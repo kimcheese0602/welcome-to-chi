@@ -2,602 +2,672 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=375, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Welcome to Chi</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:"Nunito",sans-serif;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);display:flex;justify-content:center;align-items:center;min-height:100vh;}
-.iphone-frame{width:375px;height:812px;background:#fff;border-radius:50px;box-shadow:0 0 0 12px #1a1a2e,0 0 0 14px #333,0 30px 80px rgba(0,0,0,0.5);overflow:hidden;position:relative;}
-.iphone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:150px;height:30px;background:#1a1a2e;border-radius:0 0 20px 20px;z-index:1000;}
-.screen{position:absolute;top:0;left:0;width:375px;height:812px;display:none;flex-direction:column;overflow:hidden;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif;background:#1a1a2e;}
+#app{position:fixed;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;background:#fff;overflow:hidden;max-width:430px;margin:0 auto;}
+.screen{display:none;flex-direction:column;width:100%;height:100%;overflow:hidden;}
 .screen.active{display:flex;}
 
 /* SPLASH */
-#splash{background:linear-gradient(160deg,#c9b8f0 0%,#f7c5d5 50%,#fde8c8 100%);justify-content:center;align-items:center;flex-direction:column;gap:0;}
-.splash-bg{position:absolute;width:100%;height:100%;pointer-events:none;overflow:hidden;}
-.bg-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,0.15);animation:floatC 6s ease-in-out infinite;}
-@keyframes floatC{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-20px) scale(1.05);}}
-.splash-chibi{font-size:90px;z-index:2;animation:chibiF 2.5s ease-in-out infinite;margin-bottom:10px;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.15));}
-@keyframes chibiF{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-14px) rotate(3deg);}}
-.splash-title{font-size:38px;font-weight:900;color:#fff;text-shadow:3px 3px 0 #b08ad0;text-align:center;line-height:1.15;z-index:2;margin-bottom:6px;animation:titleF 3s ease-in-out infinite;}
-@keyframes titleF{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
-.splash-sub{font-size:13px;color:rgba(255,255,255,0.8);font-weight:700;letter-spacing:3px;text-transform:uppercase;z-index:2;margin-bottom:36px;}
-.btn-start{background:linear-gradient(135deg,#a78bfa,#ec4899);color:#fff;border:none;padding:16px 52px;border-radius:50px;font-size:18px;font-weight:800;font-family:"Nunito",sans-serif;cursor:pointer;box-shadow:0 8px 25px rgba(167,139,250,0.5);z-index:2;transition:transform 0.2s;letter-spacing:1px;}
-.btn-start:active{transform:scale(0.96);}
-.splash-stars{position:absolute;width:100%;height:100%;pointer-events:none;}
-.star{position:absolute;animation:twinkle 2s infinite alternate;}
-@keyframes twinkle{0%{opacity:0.2;transform:scale(0.7);}100%{opacity:1;transform:scale(1.3);}}
+#splash{background:linear-gradient(160deg,#c9b8f0 0%,#f7c5d5 50%,#fde8c8 100%);justify-content:center;align-items:center;position:relative;}
+.splash-star{position:absolute;pointer-events:none;animation:twinkle 2s infinite alternate;}
+@keyframes twinkle{0%{opacity:.2;transform:scale(.7)}100%{opacity:1;transform:scale(1.3)}}
+.splash-blob{position:absolute;border-radius:50%;background:rgba(255,255,255,.15);animation:blobFloat 6s ease-in-out infinite;}
+@keyframes blobFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-18px) scale(1.05)}}
+.splash-chibi{font-size:88px;z-index:2;animation:chibiFloat 2.5s ease-in-out infinite;margin-bottom:8px;}
+@keyframes chibiFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-14px) rotate(3deg)}}
+.splash-title{font-size:36px;font-weight:900;color:#fff;text-shadow:3px 3px 0 #b08ad0;text-align:center;line-height:1.15;z-index:2;margin-bottom:6px;animation:titleFloat 3s ease-in-out infinite;}
+@keyframes titleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.splash-sub{font-size:12px;color:rgba(255,255,255,.85);font-weight:700;letter-spacing:3px;text-transform:uppercase;z-index:2;margin-bottom:32px;}
+.btn-splash{background:linear-gradient(135deg,#a78bfa,#ec4899);color:#fff;border:none;padding:16px 52px;border-radius:50px;font-size:17px;font-weight:800;font-family:inherit;cursor:pointer;box-shadow:0 8px 25px rgba(167,139,250,.5);z-index:2;transition:transform .15s;letter-spacing:1px;}
+.btn-splash:active{transform:scale(.95);}
 
 /* SETUP */
-#setup{background:linear-gradient(160deg,#fde8c8 0%,#fce4ec 60%,#e8d5f5 100%);display:flex;flex-direction:column;}
-.setup-header{padding:48px 24px 14px;text-align:center;flex-shrink:0;}
+#setup{background:linear-gradient(160deg,#fde8c8 0%,#fce4ec 60%,#e8d5f5 100%);}
+.setup-header{flex-shrink:0;padding:52px 24px 14px;text-align:center;}
 .setup-header h2{font-size:24px;font-weight:900;color:#7c3aed;margin-bottom:4px;}
 .setup-header p{font-size:13px;color:#9d7ab8;font-weight:600;}
-.setup-body{flex:1;padding:6px 20px;overflow-y:auto;min-height:0;}
-.setup-body::-webkit-scrollbar{display:none;}
-.setup-card{background:rgba(255,255,255,0.88);border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:0 4px 16px rgba(0,0,0,0.07);}
-.setup-card h3{font-size:14px;font-weight:800;color:#7c3aed;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
-.days-selector{display:flex;align-items:center;justify-content:center;gap:24px;}
-.days-btn{width:46px;height:46px;border-radius:50%;border:none;background:linear-gradient(135deg,#a78bfa,#ec4899);color:#fff;font-size:24px;font-weight:900;cursor:pointer;transition:transform 0.15s;font-family:"Nunito",sans-serif;display:flex;align-items:center;justify-content:center;line-height:1;}
-.days-btn:active{transform:scale(0.88);}
-.days-display{font-size:52px;font-weight:900;color:#7c3aed;min-width:80px;text-align:center;line-height:1;}
-.days-unit{font-size:12px;color:#9d7ab8;font-weight:700;text-align:center;}
-.type-btns{display:flex;gap:10px;}
-.type-btn{flex:1;padding:12px 6px;border-radius:14px;border:2.5px solid #e0d0f5;background:#fff;font-family:"Nunito",sans-serif;font-size:12px;font-weight:700;color:#9d7ab8;cursor:pointer;transition:all 0.2s;text-align:center;}
-.type-btn.sel{border-color:#a78bfa;background:linear-gradient(135deg,#f3eeff,#fce4ec);color:#7c3aed;box-shadow:0 4px 12px rgba(167,139,250,0.3);}
-.type-btn .ti{font-size:22px;display:block;margin-bottom:4px;}
-.mission-inputs{margin-top:10px;}
-.mi-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
-.mi-badge{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#a78bfa,#ec4899);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.mi-input{flex:1;padding:9px 12px;border-radius:12px;border:2px solid #e0d0f5;font-family:"Nunito",sans-serif;font-size:12px;font-weight:600;color:#5b3a8a;background:#fff;outline:none;transition:border-color 0.2s;}
+.setup-scroll{flex:1;overflow-y:scroll;-webkit-overflow-scrolling:touch;padding:4px 18px 0;}
+.setup-scroll::-webkit-scrollbar{display:none;}
+.card{background:rgba(255,255,255,.9);border-radius:20px;padding:18px;margin-bottom:14px;box-shadow:0 4px 16px rgba(0,0,0,.07);}
+.card-title{font-size:14px;font-weight:800;color:#7c3aed;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.days-row{display:flex;align-items:center;justify-content:center;gap:20px;}
+.day-btn{width:48px;height:48px;border-radius:50%;border:none;background:linear-gradient(135deg,#a78bfa,#ec4899);color:#fff;font-size:26px;font-weight:900;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(167,139,250,.4);transition:transform .15s;line-height:1;}
+.day-btn:active{transform:scale(.88);}
+.day-num{font-size:54px;font-weight:900;color:#7c3aed;min-width:80px;text-align:center;line-height:1;}
+.day-word{font-size:12px;color:#9d7ab8;font-weight:700;text-align:center;}
+.mode-row{display:flex;gap:10px;}
+.mode-btn{flex:1;padding:12px 6px;border-radius:14px;border:2.5px solid #e0d0f5;background:#fff;font-family:inherit;font-size:12px;font-weight:700;color:#9d7ab8;cursor:pointer;text-align:center;transition:all .2s;}
+.mode-btn.active{border-color:#a78bfa;background:linear-gradient(135deg,#f3eeff,#fce4ec);color:#7c3aed;box-shadow:0 4px 12px rgba(167,139,250,.3);}
+.mode-icon{font-size:22px;display:block;margin-bottom:4px;}
+.mi-list{margin-top:10px;}
+.mi-row{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
+.mi-num{width:28px;height:28px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#a78bfa,#ec4899);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.mi-input{flex:1;padding:9px 13px;border-radius:12px;border:2px solid #e0d0f5;font-family:inherit;font-size:13px;font-weight:600;color:#5b3a8a;background:#fff;outline:none;transition:border-color .2s;}
 .mi-input:focus{border-color:#a78bfa;}
-.setup-footer{flex-shrink:0;padding:10px 20px 28px;}
-.btn-launch{width:100%;background:linear-gradient(135deg,#a78bfa,#ec4899);color:#fff;border:none;padding:17px;border-radius:20px;font-size:17px;font-weight:800;font-family:"Nunito",sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(167,139,250,0.4);transition:transform 0.2s;}
-.btn-launch:active{transform:scale(0.97);}
+.auto-info{background:linear-gradient(135deg,#f3eeff,#fce4ec);border-radius:14px;padding:14px 16px;font-size:13px;color:#7c3aed;font-weight:700;line-height:1.6;text-align:center;border:2px dashed #c4b5fd;}
+.setup-footer{flex-shrink:0;padding:12px 18px 32px;}
+.btn-launch{width:100%;background:linear-gradient(135deg,#a78bfa,#ec4899);color:#fff;border:none;padding:18px;border-radius:20px;font-size:17px;font-weight:800;font-family:inherit;cursor:pointer;box-shadow:0 6px 20px rgba(167,139,250,.4);transition:transform .15s;}
+.btn-launch:active{transform:scale(.97);}
 
 /* MAP */
-#map-screen{background:linear-gradient(180deg,#b8f0e0 0%,#c8e8ff 45%,#e0d0f8 100%);display:flex;flex-direction:column;}
-.map-header{padding:36px 20px 8px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;z-index:10;}
+#map-screen{background:linear-gradient(180deg,#b8f0e0 0%,#c8e8ff 45%,#e0d0f8 100%);}
+.map-topbar{flex-shrink:0;padding:48px 20px 8px;display:flex;align-items:center;justify-content:space-between;}
 .map-title{font-size:20px;font-weight:900;color:#4a2d7a;}
 .map-title span{color:#ec4899;}
-.map-coins{background:rgba(255,255,255,0.85);border-radius:20px;padding:6px 14px;display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:#f59e0b;box-shadow:0 2px 8px rgba(0,0,0,0.1);}
-.progress-wrap{padding:0 20px 10px;flex-shrink:0;z-index:10;}
-.prog-label{font-size:12px;font-weight:700;color:#7c3aed;margin-bottom:5px;display:flex;justify-content:space-between;}
-.prog-bg{height:10px;background:rgba(255,255,255,0.6);border-radius:10px;overflow:hidden;}
-.prog-fill{height:100%;background:linear-gradient(90deg,#a78bfa,#ec4899);border-radius:10px;transition:width 0.8s cubic-bezier(0.34,1.56,0.64,1);}
-.map-scroll{flex:1;overflow-y:auto;overflow-x:hidden;position:relative;padding-bottom:80px;min-height:0;}
+.map-pts{background:rgba(255,255,255,.85);border-radius:20px;padding:6px 14px;font-size:13px;font-weight:800;color:#f59e0b;display:flex;align-items:center;gap:5px;}
+.prog-wrap{flex-shrink:0;padding:0 20px 10px;}
+.prog-labels{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:#7c3aed;margin-bottom:5px;}
+.prog-track{height:10px;background:rgba(255,255,255,.6);border-radius:10px;overflow:hidden;}
+.prog-bar{height:100%;background:linear-gradient(90deg,#a78bfa,#ec4899);border-radius:10px;transition:width .8s cubic-bezier(.34,1.56,.64,1);}
+.map-scroll{flex:1;overflow-y:scroll;-webkit-overflow-scrolling:touch;padding-bottom:76px;position:relative;}
 .map-scroll::-webkit-scrollbar{display:none;}
-.map-canvas{position:relative;width:375px;}
-.deco{position:absolute;font-size:24px;pointer-events:none;opacity:0.75;}
-.path-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
-.day-node{position:absolute;width:64px;height:64px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:transform 0.2s;z-index:5;transform:translate(-50%,-50%);}
-.day-node:active{transform:translate(-50%,-50%) scale(0.9);}
-.day-node.completed{background:linear-gradient(135deg,#6ee7b7,#34d399);box-shadow:0 6px 20px rgba(52,211,153,0.5),0 0 0 4px rgba(255,255,255,0.85);}
-.day-node.current{background:linear-gradient(135deg,#fbbf24,#f59e0b);box-shadow:0 6px 20px rgba(251,191,36,0.6),0 0 0 4px rgba(255,255,255,0.9);animation:nodePulse 1.5s ease-in-out infinite;}
-@keyframes nodePulse{0%,100%{box-shadow:0 6px 20px rgba(251,191,36,0.6),0 0 0 4px rgba(255,255,255,0.9);}50%{box-shadow:0 6px 32px rgba(251,191,36,0.9),0 0 0 9px rgba(255,255,255,0.5);}}
-.day-node.locked{background:linear-gradient(135deg,#d1d5db,#9ca3af);cursor:not-allowed;opacity:0.65;}
-.day-node.final-node{background:linear-gradient(135deg,#f9a8d4,#c084fc);box-shadow:0 6px 24px rgba(192,132,252,0.6),0 0 0 4px rgba(255,255,255,0.9);width:76px;height:76px;}
+.map-canvas{position:relative;width:100%;}
+.map-deco{position:absolute;font-size:24px;pointer-events:none;opacity:.75;}
+.path-svg{position:absolute;top:0;left:0;width:100%;pointer-events:none;overflow:visible;}
+.node{position:absolute;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;z-index:5;transform:translate(-50%,-50%);transition:transform .2s;}
+.node:active{transform:translate(-50%,-50%) scale(.9);}
+.node-done{width:64px;height:64px;background:linear-gradient(135deg,#6ee7b7,#34d399);box-shadow:0 6px 20px rgba(52,211,153,.5),0 0 0 4px rgba(255,255,255,.85);}
+.node-now{width:68px;height:68px;background:linear-gradient(135deg,#fbbf24,#f59e0b);box-shadow:0 6px 20px rgba(251,191,36,.6),0 0 0 4px rgba(255,255,255,.9);animation:pulse 1.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 6px 20px rgba(251,191,36,.6),0 0 0 4px rgba(255,255,255,.9);}50%{box-shadow:0 6px 32px rgba(251,191,36,.9),0 0 0 9px rgba(255,255,255,.5);}}
+.node-lock{width:60px;height:60px;background:linear-gradient(135deg,#d1d5db,#9ca3af);opacity:.65;cursor:not-allowed;}
+.node-chi{width:76px;height:76px;background:linear-gradient(135deg,#f9a8d4,#c084fc);box-shadow:0 6px 24px rgba(192,132,252,.6),0 0 0 4px rgba(255,255,255,.9);}
 .node-icon{font-size:22px;}
-.node-label{font-size:10px;font-weight:800;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,0.3);margin-top:1px;}
-.map-chibi{position:absolute;font-size:36px;z-index:10;transform:translate(-50%,-130%);animation:chibiMF 2s ease-in-out infinite;pointer-events:none;filter:drop-shadow(0 4px 10px rgba(0,0,0,0.2));}
-@keyframes chibiMF{0%,100%{transform:translate(-50%,-130%);}50%{transform:translate(-50%,-148%);}}
-.bottom-nav{position:absolute;bottom:0;left:0;width:375px;height:70px;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-top:1px solid rgba(167,139,250,0.15);display:flex;align-items:center;justify-content:space-around;z-index:100;}
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:8px 16px;border-radius:14px;}
-.nav-icon{font-size:22px;}
-.nav-label{font-size:10px;font-weight:700;color:#9d7ab8;}
-.nav-item.active .nav-label{color:#7c3aed;}
+.node-label{font-size:10px;font-weight:800;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.3);margin-top:1px;}
+.map-chibi{position:absolute;font-size:36px;z-index:10;transform:translate(-50%,-145%);animation:chibiMap 2s ease-in-out infinite;pointer-events:none;filter:drop-shadow(0 4px 10px rgba(0,0,0,.2));}
+@keyframes chibiMap{0%,100%{transform:translate(-50%,-145%)}50%{transform:translate(-50%,-162%)}}
+.bottom-nav{position:absolute;bottom:0;left:0;right:0;height:70px;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-top:1px solid rgba(167,139,250,.2);display:flex;align-items:center;justify-content:space-around;z-index:50;}
+.nav-btn{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:8px 16px;border-radius:14px;border:none;background:transparent;font-family:inherit;transition:background .2s;}
+.nav-btn:active{background:rgba(167,139,250,.15);}
+.nav-btn .ni{font-size:22px;}
+.nav-btn .nl{font-size:10px;font-weight:700;color:#9d7ab8;}
+.nav-btn.on .nl{color:#7c3aed;}
+
+/* MISSIONS TAB */
+#missions-tab{background:linear-gradient(160deg,#fde8c8 0%,#fce4ec 60%,#e8d5f5 100%);}
+.tab-header{flex-shrink:0;padding:52px 20px 14px;display:flex;align-items:center;justify-content:space-between;}
+.tab-header h2{font-size:22px;font-weight:900;color:#7c3aed;}
+.tab-back{background:#f3eeff;border:none;border-radius:12px;padding:8px 14px;font-size:13px;font-weight:800;color:#7c3aed;cursor:pointer;font-family:inherit;}
+.missions-scroll{flex:1;overflow-y:scroll;-webkit-overflow-scrolling:touch;padding:0 18px 30px;}
+.missions-scroll::-webkit-scrollbar{display:none;}
+.mission-card{background:rgba(255,255,255,.9);border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 4px 14px rgba(0,0,0,.07);display:flex;align-items:flex-start;gap:12px;}
+.mc-badge{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;}
+.mc-badge.done{background:linear-gradient(135deg,#6ee7b7,#34d399);}
+.mc-badge.now{background:linear-gradient(135deg,#fbbf24,#f59e0b);}
+.mc-badge.lock{background:linear-gradient(135deg,#d1d5db,#9ca3af);}
+.mc-body{flex:1;}
+.mc-day{font-size:11px;font-weight:700;color:#9d7ab8;margin-bottom:2px;}
+.mc-title{font-size:14px;font-weight:800;color:#3b1f6e;margin-bottom:3px;}
+.mc-desc{font-size:12px;font-weight:600;color:#7c6a9a;line-height:1.5;}
+
+/* REWARDS TAB */
+#rewards-tab{background:linear-gradient(160deg,#c9b8f0 0%,#f7c5d5 50%,#fde8c8 100%);}
+.rewards-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 30px;}
+.rewards-body .big{font-size:72px;margin-bottom:16px;}
+.rewards-body h2{font-size:24px;font-weight:900;color:#fff;text-shadow:2px 2px 0 #b08ad0;margin-bottom:8px;}
+.rewards-body p{font-size:14px;color:rgba(255,255,255,.85);font-weight:600;line-height:1.6;text-align:center;}
+.rewards-stat{display:flex;gap:14px;margin-top:22px;justify-content:center;}
+.rstat{background:rgba(255,255,255,.25);backdrop-filter:blur(10px);border-radius:16px;padding:12px 18px;text-align:center;border:2px solid rgba(255,255,255,.4);}
+.rstat .rv{font-size:26px;font-weight:900;color:#fff;display:block;}
+.rstat .rl{font-size:11px;font-weight:700;color:rgba(255,255,255,.85);}
+
+/* PROFILE TAB */
+#profile-tab{background:linear-gradient(160deg,#b8f0e0 0%,#c8e8ff 45%,#e0d0f8 100%);}
+.profile-scroll{flex:1;overflow-y:scroll;-webkit-overflow-scrolling:touch;padding:0 18px 30px;}
+.profile-scroll::-webkit-scrollbar{display:none;}
+.profile-hero{text-align:center;padding:52px 0 22px;}
+.profile-hero .ph-chibi{font-size:80px;}
+.profile-hero h2{font-size:22px;font-weight:900;color:#4a2d7a;margin-top:10px;}
+.profile-hero p{font-size:13px;color:#7c6a9a;font-weight:600;}
+.profile-card{background:rgba(255,255,255,.88);border-radius:18px;padding:16px 18px;margin-bottom:12px;box-shadow:0 4px 14px rgba(0,0,0,.07);}
+.profile-card h3{font-size:13px;font-weight:800;color:#7c3aed;margin-bottom:10px;}
+.prow{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f0e8ff;}
+.prow:last-child{border-bottom:none;}
+.prow .pk{font-size:13px;font-weight:700;color:#5b3a8a;}
+.prow .pv{font-size:13px;font-weight:800;color:#7c3aed;}
+.btn-reset-profile{width:100%;background:linear-gradient(135deg,#a78bfa,#ec4899);color:#fff;border:none;padding:16px;border-radius:18px;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer;margin-top:6px;transition:transform .15s;}
+.btn-reset-profile:active{transform:scale(.97);}
 
 /* MISSION MODAL */
-.modal-overlay{position:absolute;top:0;left:0;width:375px;height:812px;background:rgba(0,0,0,0.5);backdrop-filter:blur(5px);z-index:200;display:none;align-items:flex-end;justify-content:center;}
-.modal-overlay.show{display:flex;animation:fadeIn 0.3s ease;}
-@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-.mission-modal{background:#fff;border-radius:30px 30px 0 0;padding:26px 22px 36px;width:100%;position:relative;animation:slideUp 0.4s cubic-bezier(0.34,1.56,0.64,1);}
-@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
-.modal-handle{width:40px;height:4px;background:#e0d0f5;border-radius:4px;margin:0 auto 16px;}
-.modal-day-tag{display:inline-flex;align-items:center;background:linear-gradient(135deg,#f3eeff,#fce4ec);border-radius:20px;padding:5px 14px;margin-bottom:12px;}
-.modal-day-tag span{font-size:12px;font-weight:800;color:#7c3aed;}
-.modal-chibi{text-align:center;font-size:60px;margin-bottom:10px;animation:chibiF 2s ease-in-out infinite;}
+#missionModal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.55);backdrop-filter:blur(5px);z-index:200;display:none;align-items:flex-end;justify-content:center;max-width:430px;margin:0 auto;}
+#missionModal.show{display:flex;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-sheet{background:#fff;border-radius:30px 30px 0 0;padding:26px 22px 40px;width:100%;position:relative;animation:slideUp .4s cubic-bezier(.34,1.56,.64,1);}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal-handle{width:40px;height:4px;background:#e0d0f5;border-radius:4px;margin:0 auto 18px;}
+.modal-close{position:absolute;top:14px;right:18px;background:#f3eeff;border:none;width:34px;height:34px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#7c3aed;font-weight:900;}
+.modal-tag{display:inline-flex;align-items:center;background:linear-gradient(135deg,#f3eeff,#fce4ec);border-radius:20px;padding:5px 14px;margin-bottom:12px;font-size:12px;font-weight:800;color:#7c3aed;}
+.modal-chibi{text-align:center;font-size:60px;margin-bottom:10px;animation:chibiFloat 2s ease-in-out infinite;}
 .modal-title{font-size:21px;font-weight:900;color:#3b1f6e;margin-bottom:10px;line-height:1.3;}
 .modal-desc{font-size:13px;color:#7c6a9a;font-weight:600;line-height:1.65;background:linear-gradient(135deg,#f8f4ff,#fff5f8);border-radius:14px;padding:14px;margin-bottom:18px;border-left:4px solid #a78bfa;}
-.btn-complete{width:100%;background:linear-gradient(135deg,#a78bfa,#ec4899);color:#fff;border:none;padding:17px;border-radius:18px;font-size:16px;font-weight:800;font-family:"Nunito",sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(167,139,250,0.4);transition:transform 0.2s;}
-.btn-complete:active{transform:scale(0.97);}
-.btn-close-modal{position:absolute;top:14px;right:18px;background:#f3eeff;border:none;width:34px;height:34px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#7c3aed;font-weight:900;}
+.btn-done{width:100%;background:linear-gradient(135deg,#a78bfa,#ec4899);color:#fff;border:none;padding:17px;border-radius:18px;font-size:16px;font-weight:800;font-family:inherit;cursor:pointer;box-shadow:0 6px 20px rgba(167,139,250,.4);transition:transform .15s;}
+.btn-done:active{transform:scale(.97);}
 
 /* PRESENT */
-.present-overlay{position:absolute;top:0;left:0;width:375px;height:812px;background:rgba(10,0,30,0.78);z-index:300;display:none;align-items:center;justify-content:center;flex-direction:column;}
-.present-overlay.show{display:flex;animation:fadeIn 0.3s ease;}
-.confetti-wrap{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;}
-.confetti-piece{position:absolute;border-radius:2px;animation:confettiFall linear forwards;}
-@keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1;}100%{transform:translateY(900px) rotate(720deg);opacity:0;}}
-.present-emoji{font-size:110px;z-index:2;animation:presentPop 0.7s cubic-bezier(0.34,1.56,0.64,1) both;filter:drop-shadow(0 12px 30px rgba(255,200,0,0.6));}
-@keyframes presentPop{0%{transform:scale(0) rotate(-20deg);opacity:0;}65%{transform:scale(1.25) rotate(6deg);opacity:1;}100%{transform:scale(1) rotate(0deg);opacity:1;}}
-.present-title{font-size:26px;font-weight:900;color:#fff;margin-top:18px;text-align:center;z-index:2;animation:fadeInUp 0.5s 0.4s both;}
-.present-msg{font-size:14px;color:rgba(255,255,255,0.88);font-weight:600;margin-top:8px;text-align:center;z-index:2;animation:fadeInUp 0.5s 0.6s both;padding:0 30px;line-height:1.5;}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
-.btn-continue{margin-top:26px;background:#fff;color:#7c3aed;border:none;padding:14px 42px;border-radius:50px;font-size:16px;font-weight:800;font-family:"Nunito",sans-serif;cursor:pointer;box-shadow:0 6px 22px rgba(0,0,0,0.25);z-index:2;animation:fadeInUp 0.5s 0.8s both;transition:transform 0.2s;}
-.btn-continue:active{transform:scale(0.95);}
+#presentOverlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,0,30,.78);z-index:300;display:none;align-items:center;justify-content:center;flex-direction:column;max-width:430px;margin:0 auto;}
+#presentOverlay.show{display:flex;animation:fadeIn .3s ease;}
+.confetti-wrap{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;overflow:hidden;}
+.cp{position:absolute;border-radius:2px;animation:cpFall linear forwards;}
+@keyframes cpFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+.present-box{font-size:110px;z-index:2;animation:giftPop .7s cubic-bezier(.34,1.56,.64,1) both;filter:drop-shadow(0 12px 30px rgba(255,200,0,.6));}
+@keyframes giftPop{0%{transform:scale(0) rotate(-20deg);opacity:0}65%{transform:scale(1.25) rotate(6deg);opacity:1}100%{transform:scale(1) rotate(0);opacity:1}}
+.present-title{font-size:26px;font-weight:900;color:#fff;margin-top:18px;text-align:center;z-index:2;animation:upIn .5s .4s both;}
+.present-msg{font-size:14px;color:rgba(255,255,255,.88);font-weight:600;margin-top:8px;text-align:center;z-index:2;animation:upIn .5s .6s both;padding:0 30px;line-height:1.5;}
+@keyframes upIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.btn-continue{margin-top:26px;background:#fff;color:#7c3aed;border:none;padding:14px 42px;border-radius:50px;font-size:16px;font-weight:800;font-family:inherit;cursor:pointer;z-index:2;animation:upIn .5s .8s both;transition:transform .15s;box-shadow:0 6px 22px rgba(0,0,0,.25);}
+.btn-continue:active{transform:scale(.95);}
 
 /* VICTORY */
-#victory{background:linear-gradient(160deg,#ffd6e7 0%,#c9b8f0 50%,#b8e4f9 100%);justify-content:center;align-items:center;flex-direction:column;}
-.victory-bg{position:absolute;width:100%;height:100%;pointer-events:none;overflow:hidden;}
-.v-ring{position:absolute;border-radius:50%;border:3px solid rgba(255,255,255,0.2);animation:ringExpand 3s ease-out infinite;}
-@keyframes ringExpand{0%{transform:translate(-50%,-50%) scale(0.5);opacity:0.8;}100%{transform:translate(-50%,-50%) scale(2.5);opacity:0;}}
-.victory-chibi{font-size:110px;z-index:2;margin-bottom:14px;animation:victoryDance 0.9s ease-in-out infinite alternate,victoryPop 0.8s 0.1s both;filter:drop-shadow(0 10px 22px rgba(0,0,0,0.2));}
-@keyframes victoryDance{0%{transform:rotate(-9deg) scale(1);}100%{transform:rotate(9deg) scale(1.06);}}
-@keyframes victoryPop{0%{transform:scale(0);opacity:0;}100%{transform:scale(1);opacity:1;}}
-.victory-title{font-size:34px;font-weight:900;color:#fff;text-shadow:3px 3px 0 #b08ad0;text-align:center;line-height:1.2;z-index:2;animation:victoryPop 0.8s 0.2s both;margin-bottom:6px;}
-.victory-sub{font-size:15px;color:rgba(255,255,255,0.9);font-weight:700;text-align:center;z-index:2;margin-bottom:22px;animation:fadeInUp 0.6s 0.5s both;}
-.victory-badges{display:flex;gap:12px;z-index:2;margin-bottom:26px;animation:fadeInUp 0.6s 0.7s both;}
-.v-badge{background:rgba(255,255,255,0.25);backdrop-filter:blur(10px);border-radius:16px;padding:10px 16px;text-align:center;border:2px solid rgba(255,255,255,0.45);}
+#victory{background:linear-gradient(160deg,#ffd6e7 0%,#c9b8f0 50%,#b8e4f9 100%);justify-content:center;align-items:center;position:relative;}
+.v-ring{position:absolute;border-radius:50%;border:3px solid rgba(255,255,255,.2);animation:ringOut 3s ease-out infinite;}
+@keyframes ringOut{0%{transform:translate(-50%,-50%) scale(.5);opacity:.8}100%{transform:translate(-50%,-50%) scale(2.5);opacity:0}}
+.v-chibi{font-size:110px;z-index:2;margin-bottom:14px;animation:vDance .9s ease-in-out infinite alternate,giftPop .8s .1s both;}
+@keyframes vDance{0%{transform:rotate(-9deg) scale(1)}100%{transform:rotate(9deg) scale(1.06)}}
+.v-title{font-size:34px;font-weight:900;color:#fff;text-shadow:3px 3px 0 #b08ad0;text-align:center;line-height:1.2;z-index:2;animation:giftPop .8s .2s both;margin-bottom:6px;}
+.v-sub{font-size:15px;color:rgba(255,255,255,.9);font-weight:700;text-align:center;z-index:2;margin-bottom:22px;animation:upIn .6s .5s both;}
+.v-badges{display:flex;gap:12px;z-index:2;margin-bottom:26px;animation:upIn .6s .7s both;}
+.v-badge{background:rgba(255,255,255,.25);backdrop-filter:blur(10px);border-radius:16px;padding:10px 16px;text-align:center;border:2px solid rgba(255,255,255,.45);}
 .v-badge .vi{font-size:22px;display:block;}
 .v-badge .vl{font-size:11px;font-weight:700;color:#fff;margin-top:3px;}
-.btn-restart{background:#fff;color:#7c3aed;border:none;padding:16px 46px;border-radius:50px;font-size:16px;font-weight:800;font-family:"Nunito",sans-serif;cursor:pointer;box-shadow:0 6px 22px rgba(0,0,0,0.2);z-index:2;animation:fadeInUp 0.6s 0.9s both;transition:transform 0.2s;}
-.btn-restart:active{transform:scale(0.95);}
+.btn-restart{background:#fff;color:#7c3aed;border:none;padding:16px 46px;border-radius:50px;font-size:16px;font-weight:800;font-family:inherit;cursor:pointer;z-index:2;animation:upIn .6s .9s both;transition:transform .15s;box-shadow:0 6px 22px rgba(0,0,0,.2);}
+.btn-restart:active{transform:scale(.95);}
 </style>
 </head>
 <body>
-<div class="iphone-frame">
-<div class="iphone-notch"></div>
+<div id="app">
 
-<!-- ═══ SPLASH ═══ -->
+<!-- SPLASH -->
 <div class="screen active" id="splash">
-  <div class="splash-stars" id="splashStars"></div>
-  <div class="splash-bg">
-    <div class="bg-circle" style="width:200px;height:200px;top:-60px;left:-60px;"></div>
-    <div class="bg-circle" style="width:150px;height:150px;bottom:80px;right:-40px;animation-delay:1s;"></div>
-    <div class="bg-circle" style="width:100px;height:100px;top:200px;right:20px;animation-delay:2s;"></div>
-  </div>
+  <div id="splashStars"></div>
+  <div class="splash-blob" style="width:200px;height:200px;top:-60px;left:-60px;"></div>
+  <div class="splash-blob" style="width:150px;height:150px;bottom:80px;right:-40px;animation-delay:1s;"></div>
+  <div class="splash-blob" style="width:100px;height:100px;top:200px;right:20px;animation-delay:2s;"></div>
   <div class="splash-chibi">🌸</div>
   <div class="splash-title">Welcome<br>to Chi ✨</div>
   <div class="splash-sub">Your Daily Adventure</div>
-  <button class="btn-start" onclick="showScreen('setup')">Let's Go! 🚀</button>
+  <button class="btn-splash" onclick="goSetup()">Let's Go! 🚀</button>
 </div>
 
-<!-- ═══ SETUP ═══ -->
+<!-- SETUP -->
 <div class="screen" id="setup">
   <div class="setup-header">
     <h2>⚙️ Set Up Your Journey</h2>
     <p>Customize your Chi adventure!</p>
   </div>
-  <div class="setup-body">
-    <div class="setup-card">
-      <h3>📅 How many days?</h3>
-      <div class="days-selector">
-        <button class="days-btn" onclick="changeDays(-1)">−</button>
+  <div class="setup-scroll">
+    <div class="card">
+      <div class="card-title">📅 How many days?</div>
+      <div class="days-row">
+        <button class="day-btn" onclick="changeDays(-1)">-</button>
         <div>
-          <div class="days-display" id="daysDisplay">7</div>
-          <div class="days-unit">days</div>
+          <div class="day-num" id="dayNum">7</div>
+          <div class="day-word">days</div>
         </div>
-        <button class="days-btn" onclick="changeDays(1)">+</button>
+        <button class="day-btn" onclick="changeDays(1)">+</button>
       </div>
     </div>
-    <div class="setup-card">
-      <h3>🎯 Mission Type</h3>
-      <div class="type-btns">
-        <button class="type-btn sel" id="typeManual" onclick="setType('manual')">
-          <span class="ti">✏️</span>Manual Input
+    <div class="card">
+      <div class="card-title">🎯 Mission Mode</div>
+      <div class="mode-row">
+        <button class="mode-btn active" id="btnManual" onclick="setMode('manual')">
+          <span class="mode-icon">✏️</span>Manual Input
         </button>
-        <button class="type-btn" id="typeAuto" onclick="setType('auto')">
-          <span class="ti">🤖</span>Auto Mission
+        <button class="mode-btn" id="btnAuto" onclick="setMode('auto')">
+          <span class="mode-icon">🤖</span>Auto Mix
         </button>
       </div>
     </div>
-    <div class="setup-card" id="missionInputCard">
-      <h3>📝 Your Missions</h3>
-      <div class="mission-inputs" id="missionInputs"></div>
+    <div class="card" id="manualCard">
+      <div class="card-title">📝 Enter Your Missions</div>
+      <div class="mi-list" id="miList"></div>
+    </div>
+    <div class="card" id="autoCard" style="display:none;">
+      <div class="card-title">🎲 Auto Mission Mix</div>
+      <div class="auto-info">
+        Missions will be randomly selected and mixed from Chi's mission bank — one unique challenge per day! 🌟
+      </div>
     </div>
   </div>
-  <!-- LAUNCH BUTTON IS NOW IN ITS OWN FOOTER DIV — always visible -->
   <div class="setup-footer">
     <button class="btn-launch" onclick="launchMap()">🗺️ Start Adventure!</button>
   </div>
 </div>
 
-<!-- ═══ MAP ═══ -->
+<!-- MAP -->
 <div class="screen" id="map-screen">
-  <div class="map-header">
+  <div class="map-topbar">
     <div class="map-title">Chi's <span>World</span> 🗺️</div>
-    <div class="map-coins">⭐ <span id="coinCount">0</span> pts</div>
+    <div class="map-pts">⭐ <span id="ptsVal">0</span> pts</div>
   </div>
-  <div class="progress-wrap">
-    <div class="prog-label">
+  <div class="prog-wrap">
+    <div class="prog-labels">
       <span>Progress</span>
-      <span id="progText">0 / 7 days</span>
+      <span id="progLabel">0 / 7 days</span>
     </div>
-    <div class="prog-bg"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    <div class="prog-track"><div class="prog-bar" id="progBar" style="width:0%"></div></div>
   </div>
-  <div class="map-scroll">
+  <div class="map-scroll" id="mapScroll">
     <div class="map-canvas" id="mapCanvas"></div>
   </div>
   <div class="bottom-nav">
-    <div class="nav-item active"><div class="nav-icon">🗺️</div><div class="nav-label">Map</div></div>
-    <div class="nav-item"><div class="nav-icon">📋</div><div class="nav-label">Missions</div></div>
-    <div class="nav-item"><div class="nav-icon">🏆</div><div class="nav-label">Rewards</div></div>
-    <div class="nav-item"><div class="nav-icon">👤</div><div class="nav-label">Profile</div></div>
+    <button class="nav-btn on" id="nav-map"       onclick="navTo('map')">      <span class="ni">🗺️</span><span class="nl">Map</span></button>
+    <button class="nav-btn"    id="nav-missions"   onclick="navTo('missions')"> <span class="ni">📋</span><span class="nl">Missions</span></button>
+    <button class="nav-btn"    id="nav-rewards"    onclick="navTo('rewards')">  <span class="ni">🏆</span><span class="nl">Rewards</span></button>
+    <button class="nav-btn"    id="nav-profile"    onclick="navTo('profile')">  <span class="ni">👤</span><span class="nl">Profile</span></button>
   </div>
 </div>
 
-<!-- ═══ VICTORY ═══ -->
+<!-- MISSIONS TAB -->
+<div class="screen" id="missions-tab">
+  <div class="tab-header">
+    <h2>📋 All Missions</h2>
+    <button class="tab-back" onclick="navTo('map')">← Map</button>
+  </div>
+  <div class="missions-scroll" id="missionsList"></div>
+</div>
+
+<!-- REWARDS TAB -->
+<div class="screen" id="rewards-tab">
+  <div class="tab-header">
+    <h2>🏆 Rewards</h2>
+    <button class="tab-back" onclick="navTo('map')">← Map</button>
+  </div>
+  <div class="rewards-body">
+    <div class="big">🎁</div>
+    <h2>Your Rewards</h2>
+    <p>Complete missions to earn points and unlock surprises from Chi!</p>
+    <div class="rewards-stat">
+      <div class="rstat"><span class="rv" id="rwPts">0</span><span class="rl">Points</span></div>
+      <div class="rstat"><span class="rv" id="rwDone">0</span><span class="rl">Done</span></div>
+      <div class="rstat"><span class="rv" id="rwLeft">0</span><span class="rl">Left</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROFILE TAB -->
+<div class="screen" id="profile-tab">
+  <div class="tab-header">
+    <h2>👤 Profile</h2>
+    <button class="tab-back" onclick="navTo('map')">← Map</button>
+  </div>
+  <div class="profile-scroll">
+    <div class="profile-hero">
+      <div class="ph-chibi">🌸</div>
+      <h2>Chi's Adventurer</h2>
+      <p>Keep completing missions to level up!</p>
+    </div>
+    <div class="profile-card">
+      <h3>📊 Journey Stats</h3>
+      <div class="prow"><span class="pk">Total Days</span>    <span class="pv" id="prTotal">7</span></div>
+      <div class="prow"><span class="pk">Completed</span>     <span class="pv" id="prDone">0</span></div>
+      <div class="prow"><span class="pk">Points Earned</span> <span class="pv" id="prPts">0</span></div>
+      <div class="prow"><span class="pk">Mission Mode</span>  <span class="pv" id="prMode">Manual</span></div>
+    </div>
+    <div class="profile-card">
+      <h3>⚙️ Actions</h3>
+      <button class="btn-reset-profile" onclick="restart()">🔄 Start New Journey</button>
+    </div>
+  </div>
+</div>
+
+<!-- MISSION MODAL -->
+<div id="missionModal">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-tag"   id="modalTag">⭐ Day 1</div>
+    <div class="modal-chibi" id="modalChibi">🌸</div>
+    <div class="modal-title" id="modalTitle">Today's Mission</div>
+    <div class="modal-desc"  id="modalDesc">Complete your mission!</div>
+    <button class="btn-done" onclick="completeMission()">✅ Mission Complete!</button>
+  </div>
+</div>
+
+<!-- PRESENT -->
+<div id="presentOverlay">
+  <div class="confetti-wrap" id="confettiWrap"></div>
+  <div class="present-box">🎁</div>
+  <div class="present-title" id="presentTitle">🎉 Surprise!</div>
+  <div class="present-msg"   id="presentMsg">You unlocked a reward!</div>
+  <button class="btn-continue" id="btnContinue" onclick="closePresentAndContinue()">Continue ➡️</button>
+</div>
+
+<!-- VICTORY -->
 <div class="screen" id="victory">
-  <div class="victory-bg" id="victoryBg"></div>
-  <div class="victory-chibi">🎉</div>
-  <div class="victory-title">You Reached<br>Chi! 🌟</div>
-  <div class="victory-sub">All missions complete! Amazing job!</div>
-  <div class="victory-badges">
+  <div class="v-ring" style="width:200px;height:200px;top:50%;left:50%;"></div>
+  <div class="v-ring" style="width:280px;height:280px;top:50%;left:50%;animation-delay:.8s;"></div>
+  <div class="v-ring" style="width:360px;height:360px;top:50%;left:50%;animation-delay:1.6s;"></div>
+  <div class="v-chibi">🎉</div>
+  <div class="v-title">You Reached<br>Chi! 🌟</div>
+  <div class="v-sub">All missions complete! Amazing!</div>
+  <div class="v-badges">
     <div class="v-badge"><span class="vi">🏆</span><span class="vl">Champion</span></div>
-    <div class="v-badge"><span class="vi">⭐</span><span class="vl" id="finalPts">0 pts</span></div>
-    <div class="v-badge"><span class="vi">🔥</span><span class="vl" id="finalDays">7 days</span></div>
+    <div class="v-badge"><span class="vi">⭐</span><span class="vl" id="vPts">0 pts</span></div>
+    <div class="v-badge"><span class="vi">🔥</span><span class="vl" id="vDays">7 days</span></div>
   </div>
   <button class="btn-restart" onclick="restart()">🔄 New Journey</button>
 </div>
 
-<!-- ═══ MISSION MODAL ═══ -->
-<div class="modal-overlay" id="missionModal">
-  <div class="mission-modal">
-    <div class="modal-handle"></div>
-    <button class="btn-close-modal" onclick="closeModal()">✕</button>
-    <div class="modal-day-tag"><span id="modalDayTag">⭐ Day 1</span></div>
-    <div class="modal-chibi" id="modalChibi">🌸</div>
-    <div class="modal-title" id="modalTitle">Today's Mission</div>
-    <div class="modal-desc" id="modalDesc">Complete your mission for today!</div>
-    <button class="btn-complete" onclick="completeMission()">✅ Mission Complete!</button>
-  </div>
-</div>
-
-<!-- ═══ PRESENT ═══ -->
-<div class="present-overlay" id="presentOverlay">
-  <div class="confetti-wrap" id="confettiWrap"></div>
-  <div class="present-emoji">🎁</div>
-  <div class="present-title" id="presentTitle">🎉 Surprise!</div>
-  <div class="present-msg" id="presentMsg">You unlocked a special reward! Keep going!</div>
-  <button class="btn-continue" id="btnContinue" onclick="closePresentAndContinue()">Continue ➡️</button>
-</div>
-
-</div><!-- /iphone-frame -->
+</div><!-- /app -->
 
 <script>
-// ─── STATE ───────────────────────────────────────────────────────────────────
-var totalDays = 7;
-var currentDay = 1;
-var completedDays = 0;
-var missionType = "manual";
-var missions = [];
-var coins = 0;
-var nodePositions = [];
+/* ── STATE ─────────────────────────────────────────────────────── */
+var S = {
+  totalDays:7, currentDay:1, completedDays:0,
+  mode:"manual", missions:[], coins:0
+};
 
-// ─── YOUR 10 CUSTOM AUTO MISSIONS (shuffled randomly) ────────────────────────
-var autoMissionBank = [
-  { title: "Get Thing Done Once 1️⃣",   desc: "Pick ONE thing you have been putting off and do it today. Just once is enough — start the momentum!" },
-  { title: "Smile Twice 😊",            desc: "Find two genuine reasons to smile today. Share one of those smiles with someone around you!" },
-  { title: "Think of Me Three 💭",      desc: "Pause three times today and let your mind wander to a happy memory. Let it make you smile." },
-  { title: "Follow Your Heart Four 💖", desc: "Make four small decisions today purely based on what your heart says — no overthinking allowed!" },
-  { title: "Do What You Like Five 🎉",  desc: "Spend time doing five minutes (or more!) of something you genuinely enjoy. You deserve it." },
-  { title: "Chic Six 💅",               desc: "Do six things today that make you feel stylish and put-together. Dress up, stand tall, own it!" },
-  { title: "Celebration Seven 🥂",      desc: "Celebrate seven small wins from this week — write them down and toast to yourself!" },
-  { title: "Be Late Eight ⏰",          desc: "Give yourself permission to slow down today. Arrive eight minutes late to your own rush — breathe." },
-  { title: "Ask Me Why Nine 🤔",        desc: "Ask yourself 'why?' nine times today about something you do automatically. Discover your real reasons." },
-  { title: "Send Me Love Ten 💌",       desc: "Send ten little acts of love today — a text, a smile, a kind thought. Spread the warmth!" }
+/* ── MISSION BANK ──────────────────────────────────────────────── */
+var BANK = [
+  {title:"Get Thing Done Once 1️⃣",   desc:"Pick ONE thing you have been putting off and do it today. Just once is enough — start the momentum!"},
+  {title:"Smile Twice 😊",            desc:"Find two genuine reasons to smile today. Share one of those smiles with someone around you!"},
+  {title:"Think of Me Three 💭",      desc:"Pause three times today and let your mind wander to a happy memory. Let it make you smile."},
+  {title:"Follow Your Heart Four 💖", desc:"Make four small decisions today purely based on what your heart says — no overthinking allowed!"},
+  {title:"Do What You Like Five 🎉",  desc:"Spend time doing five minutes (or more!) of something you genuinely enjoy. You deserve it."},
+  {title:"Chic Six 💅",               desc:"Do six things today that make you feel stylish and put-together. Dress up, stand tall, own it!"},
+  {title:"Celebration Seven 🥂",      desc:"Celebrate seven small wins from this week — write them down and toast to yourself!"},
+  {title:"Be Late Eight ⏰",          desc:"Give yourself permission to slow down today. Arrive eight minutes late to your own rush — breathe."},
+  {title:"Ask Me Why Nine 🤔",        desc:"Ask yourself 'why?' nine times today about something you do automatically. Discover your real reasons."},
+  {title:"Send Me Love Ten 💌",       desc:"Send ten little acts of love today — a text, a smile, a kind thought. Spread the warmth!"}
 ];
 
-var surprises = [
-  { title: "🎊 Amazing!", msg: "You are crushing it! Chi is so proud of you!" },
-  { title: "⭐ Star Player!", msg: "Another day, another victory! You are unstoppable!" },
-  { title: "🌟 Brilliant!", msg: "Look at you go! Chi is cheering for you every step!" },
-  { title: "🎉 Fantastic!", msg: "One step closer to Chi! Keep the momentum going!" },
-  { title: "💫 Superstar!", msg: "You did it! Chi cannot wait to see you at the finish line!" }
+var SURPRISES = [
+  {title:"🎊 Amazing!",    msg:"You are crushing it! Chi is so proud of you!"},
+  {title:"⭐ Star Player!", msg:"Another day, another victory! You are unstoppable!"},
+  {title:"🌟 Brilliant!",  msg:"Look at you go! Chi is cheering for you every step!"},
+  {title:"🎉 Fantastic!",  msg:"One step closer to Chi! Keep the momentum going!"},
+  {title:"💫 Superstar!",  msg:"You did it! Chi cannot wait to see you at the finish line!"}
 ];
 
-// ─── SCREEN NAVIGATION ───────────────────────────────────────────────────────
-function showScreen(id) {
-  document.querySelectorAll(".screen").forEach(function(s) {
-    s.classList.remove("active");
-  });
-  document.getElementById(id).classList.add("active");
+/* ── HELPERS ───────────────────────────────────────────────────── */
+function $(id){ return document.getElementById(id); }
+
+function showScreen(id){
+  document.querySelectorAll(".screen").forEach(function(s){ s.classList.remove("active"); });
+  var el=$(id); if(el) el.classList.add("active");
 }
 
-// ─── SPLASH STARS ────────────────────────────────────────────────────────────
-(function() {
-  var c = document.getElementById("splashStars");
-  var emojis = ["⭐","✨","💫","🌟","⚡","🌸"];
-  for (var i = 0; i < 14; i++) {
-    var s = document.createElement("div");
-    s.className = "star";
-    s.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-    s.style.left = Math.random() * 90 + "%";
-    s.style.top = Math.random() * 90 + "%";
-    s.style.animationDelay = (Math.random() * 2) + "s";
-    s.style.fontSize = (12 + Math.random() * 14) + "px";
-    c.appendChild(s);
-  }
-})();
-
-// ─── SETUP CONTROLS ──────────────────────────────────────────────────────────
-function changeDays(delta) {
-  totalDays = Math.max(1, Math.min(30, totalDays + delta));
-  document.getElementById("daysDisplay").textContent = totalDays;
-  if (missionType === "manual") renderMissionInputs();
-}
-
-function setType(t) {
-  missionType = t;
-  document.getElementById("typeManual").classList.toggle("sel", t === "manual");
-  document.getElementById("typeAuto").classList.toggle("sel", t === "auto");
-  var card = document.getElementById("missionInputCard");
-  card.style.display = t === "manual" ? "block" : "none";
-  if (t === "manual") renderMissionInputs();
-}
-
-function renderMissionInputs() {
-  var c = document.getElementById("missionInputs");
-  c.innerHTML = "";
-  for (var i = 1; i <= totalDays; i++) {
-    var row = document.createElement("div");
-    row.className = "mi-row";
-    var prev = (missions[i - 1] && missions[i - 1].title) ? missions[i - 1].title : "";
-    row.innerHTML =
-      '<div class="mi-badge">' + i + '</div>' +
-      '<input class="mi-input" id="mission_' + i + '" placeholder="Day ' + i + ' mission..." value="' + prev.replace(/"/g, "&quot;") + '"/>';
-    c.appendChild(row);
-  }
-}
-
-// ─── SHUFFLE HELPER ──────────────────────────────────────────────────────────
-function shuffleArray(arr) {
-  var a = arr.slice();
-  for (var i = a.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+function shuffle(arr){
+  var a=arr.slice();
+  for(var i=a.length-1;i>0;i--){
+    var j=Math.floor(Math.random()*(i+1));
+    var t=a[i]; a[i]=a[j]; a[j]=t;
   }
   return a;
 }
 
-// ─── LAUNCH MAP — FIXED ──────────────────────────────────────────────────────
-function launchMap() {
-  missions = [];
-
-  if (missionType === "manual") {
-    // Read every input field by ID — safe even if some are empty
-    for (var i = 1; i <= totalDays; i++) {
-      var el = document.getElementById("mission_" + i);
-      var v = el ? el.value.trim() : "";
-      missions.push({
-        title: v || ("Day " + i + " Mission"),
-        desc: v
-          ? "Your mission: \"" + v + "\" — go make it happen! 💪"
-          : "Today is day " + i + " of your journey. Give it your absolute best!"
-      });
-    }
-  } else {
-    // Auto mode: shuffle the bank and cycle through it
-    var shuffled = shuffleArray(autoMissionBank);
-    for (var i = 0; i < totalDays; i++) {
-      missions.push(shuffled[i % shuffled.length]);
-    }
+/* ── SPLASH STARS ──────────────────────────────────────────────── */
+(function(){
+  var c=$("splashStars");
+  var em=["⭐","✨","💫","🌟","⚡","🌸"];
+  for(var i=0;i<14;i++){
+    var s=document.createElement("div");
+    s.className="splash-star";
+    s.textContent=em[Math.floor(Math.random()*em.length)];
+    s.style.cssText="left:"+Math.random()*90+"%;top:"+Math.random()*90+"%;font-size:"+(12+Math.random()*14)+"px;animation-delay:"+(Math.random()*2)+"s;";
+    c.appendChild(s);
   }
+})();
 
-  currentDay = 1;
-  completedDays = 0;
-  coins = 0;
-
-  // Switch screen first, then build map on next tick so DOM is ready
-  showScreen("map-screen");
-  setTimeout(function() {
-    buildMap();
-    updateProgress();
-  }, 50);
+/* ── SETUP ─────────────────────────────────────────────────────── */
+function goSetup(){
+  renderMissionInputs();
+  showScreen("setup");
 }
 
-// ─── BUILD MAP ───────────────────────────────────────────────────────────────
-function buildMap() {
-  var canvas = document.getElementById("mapCanvas");
-  canvas.innerHTML = "";
-  nodePositions = [];
+function changeDays(delta){
+  S.totalDays=Math.max(1,Math.min(30,S.totalDays+delta));
+  $("dayNum").textContent=S.totalDays;
+  if(S.mode==="manual") renderMissionInputs();
+}
 
-  var cols = [90, 200, 290, 180, 80, 210, 300, 160, 85, 205, 290, 170, 80, 215, 295];
-  var rowGap = 95;
-  var startY = 85;
+function setMode(m){
+  S.mode=m;
+  $("btnManual").classList.toggle("active",m==="manual");
+  $("btnAuto").classList.toggle("active",  m==="auto");
+  $("manualCard").style.display=m==="manual"?"block":"none";
+  $("autoCard").style.display  =m==="auto"  ?"block":"none";
+}
 
-  for (var i = 0; i < totalDays; i++) {
-    nodePositions.push({ x: cols[i % cols.length], y: startY + i * rowGap });
+function renderMissionInputs(){
+  var list=$("miList"); list.innerHTML="";
+  for(var i=1;i<=S.totalDays;i++){
+    var saved=(S.missions[i-1]&&S.missions[i-1].rawTitle)?S.missions[i-1].rawTitle:"";
+    var row=document.createElement("div");
+    row.className="mi-row";
+    row.innerHTML='<div class="mi-num">'+i+'</div><input class="mi-input" id="mi'+i+'" placeholder="Day '+i+' mission..." value="'+saved.replace(/"/g,"&quot;")+'"/>';
+    list.appendChild(row);
   }
+}
 
-  var finalX = 188;
-  var finalY = startY + totalDays * rowGap;
-  canvas.style.height = (finalY + 140) + "px";
-
-  // ── SVG Path ──
-  var ns = "http://www.w3.org/2000/svg";
-  var svg = document.createElementNS(ns, "svg");
-  svg.setAttribute("class", "path-svg");
-  svg.setAttribute("viewBox", "0 0 375 " + (finalY + 140));
-  svg.setAttribute("preserveAspectRatio", "none");
-
-  var d = "M " + nodePositions[0].x + " " + nodePositions[0].y;
-  for (var i = 1; i < nodePositions.length; i++) {
-    var p = nodePositions[i - 1], q = nodePositions[i];
-    d += " Q " + ((p.x + q.x) / 2) + " " + (p.y + 38) + " " + q.x + " " + q.y;
+/* ── LAUNCH MAP ────────────────────────────────────────────────── */
+function launchMap(){
+  S.missions=[];
+  if(S.mode==="auto"){
+    var pool=shuffle(BANK);
+    for(var i=0;i<S.totalDays;i++) S.missions.push(pool[i%pool.length]);
+  } else {
+    for(var i=1;i<=S.totalDays;i++){
+      var el=$("mi"+i);
+      var raw=el?el.value.trim():"";
+      S.missions.push({
+        rawTitle:raw,
+        title:raw||("Day "+i+" Mission"),
+        desc:raw?"Your mission: \""+raw+"\" — go make it happen! 💪":"Today is day "+i+" of your adventure. Give it everything you have got!"
+      });
+    }
   }
-  var lp = nodePositions[nodePositions.length - 1];
-  d += " Q " + ((lp.x + finalX) / 2) + " " + (lp.y + 42) + " " + finalX + " " + finalY;
+  S.currentDay=1; S.completedDays=0; S.coins=0;
+  showScreen("map-screen");
+  navHighlight("map");
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      buildMap();
+      refreshProgress();
+    });
+  });
+}
 
-  var shadow = document.createElementNS(ns, "path");
-  shadow.setAttribute("d", d); shadow.setAttribute("fill", "none");
-  shadow.setAttribute("stroke", "rgba(0,0,0,0.1)"); shadow.setAttribute("stroke-width", "14");
-  shadow.setAttribute("stroke-linecap", "round");
-  svg.appendChild(shadow);
+/* ── BUILD MAP ─────────────────────────────────────────────────── */
+function buildMap(){
+  var canvas=$("mapCanvas");
+  canvas.innerHTML="";
+  var W=canvas.offsetWidth||375;
+  var cols=[.24,.53,.77,.48,.21,.56,.80,.43,.22,.55,.78,.45,.23,.57,.79];
+  var rowGap=95, startY=85, pts=[];
+  for(var i=0;i<S.totalDays;i++) pts.push({x:Math.round(cols[i%cols.length]*W),y:startY+i*rowGap});
+  var finalX=Math.round(W*.5), finalY=startY+S.totalDays*rowGap, totalH=finalY+140;
+  canvas.style.height=totalH+"px";
 
-  var pathEl = document.createElementNS(ns, "path");
-  pathEl.setAttribute("d", d); pathEl.setAttribute("fill", "none");
-  pathEl.setAttribute("stroke", "rgba(255,255,255,0.78)"); pathEl.setAttribute("stroke-width", "10");
-  pathEl.setAttribute("stroke-linecap", "round"); pathEl.setAttribute("stroke-dasharray", "18 12");
-  svg.appendChild(pathEl);
+  /* SVG path */
+  var ns="http://www.w3.org/2000/svg";
+  var svg=document.createElementNS(ns,"svg");
+  svg.setAttribute("class","path-svg");
+  svg.setAttribute("viewBox","0 0 "+W+" "+totalH);
+  svg.setAttribute("preserveAspectRatio","none");
+  svg.style.height=totalH+"px";
+  var d="M "+pts[0].x+" "+pts[0].y;
+  for(var i=1;i<pts.length;i++){
+    var p=pts[i-1],q=pts[i];
+    d+=" Q "+((p.x+q.x)/2)+" "+(p.y+38)+" "+q.x+" "+q.y;
+  }
+  var lp=pts[pts.length-1];
+  d+=" Q "+((lp.x+finalX)/2)+" "+(lp.y+42)+" "+finalX+" "+finalY;
+  function mkPath(stroke,w,dash){
+    var p=document.createElementNS(ns,"path");
+    p.setAttribute("d",d); p.setAttribute("fill","none");
+    p.setAttribute("stroke",stroke); p.setAttribute("stroke-width",w);
+    p.setAttribute("stroke-linecap","round");
+    if(dash) p.setAttribute("stroke-dasharray",dash);
+    return p;
+  }
+  svg.appendChild(mkPath("rgba(0,0,0,.1)","14",null));
+  svg.appendChild(mkPath("rgba(255,255,255,.78)","10","18 12"));
   canvas.appendChild(svg);
 
-  // ── Decorations ──
-  var decos = [
-    {e:"🌳",x:16,y:50},{e:"🌸",x:316,y:90},{e:"⭐",x:336,y:190},{e:"🌿",x:10,y:240},
-    {e:"🍄",x:326,y:310},{e:"🌺",x:16,y:370},{e:"☁️",x:276,y:440},{e:"🦋",x:26,y:470},
-    {e:"🌻",x:306,y:540},{e:"🍀",x:16,y:590},{e:"✨",x:336,y:630},{e:"🌈",x:146,y:16},
-    {e:"🐝",x:288,y:255},{e:"🌙",x:28,y:158}
-  ];
-  decos.forEach(function(d) {
-    var el = document.createElement("div");
-    el.className = "deco"; el.textContent = d.e;
-    el.style.left = d.x + "px"; el.style.top = d.y + "px";
+  /* Decorations */
+  [{e:"🌳",x:.04,y:50},{e:"🌸",x:.84,y:90},{e:"⭐",x:.89,y:185},
+   {e:"🌿",x:.03,y:240},{e:"🍄",x:.87,y:310},{e:"🌺",x:.04,y:370},
+   {e:"☁️",x:.73,y:440},{e:"🦋",x:.07,y:470},{e:"🌻",x:.82,y:540},
+   {e:"🍀",x:.04,y:590},{e:"✨",x:.89,y:630},{e:"🌈",x:.39,y:16},
+   {e:"🐝",x:.77,y:255},{e:"🌙",x:.07,y:158}
+  ].forEach(function(d){
+    var el=document.createElement("div");
+    el.className="map-deco"; el.textContent=d.e;
+    el.style.left=Math.round(d.x*W)+"px"; el.style.top=d.y+"px";
     canvas.appendChild(el);
   });
 
-  // ── Day Nodes ──
-  for (var i = 0; i < totalDays; i++) {
-    var dayNum = i + 1;
-    var node = document.createElement("div");
-    var cls = "day-node ";
-    if (dayNum < currentDay) cls += "completed";
-    else if (dayNum === currentDay) cls += "current";
-    else cls += "locked";
-    node.className = cls;
-    node.id = "node_" + dayNum;
-    node.style.left = nodePositions[i].x + "px";
-    node.style.top = nodePositions[i].y + "px";
-
-    if (dayNum < currentDay) {
-      node.innerHTML = '<div class="node-icon">✅</div><div class="node-label">Day ' + dayNum + '</div>';
-    } else if (dayNum === currentDay) {
-      node.innerHTML = '<div class="node-icon">⭐</div><div class="node-label">Day ' + dayNum + '</div>';
-      (function(d) { node.onclick = function() { openMission(d); }; })(dayNum);
+  /* Day nodes */
+  for(var i=0;i<S.totalDays;i++){
+    var day=i+1, nd=document.createElement("div");
+    nd.id="nd"+day;
+    nd.style.left=pts[i].x+"px"; nd.style.top=pts[i].y+"px";
+    if(day<S.currentDay){
+      nd.className="node node-done";
+      nd.innerHTML='<div class="node-icon">✅</div><div class="node-label">Day '+day+'</div>';
+    } else if(day===S.currentDay){
+      nd.className="node node-now";
+      nd.innerHTML='<div class="node-icon">⭐</div><div class="node-label">Day '+day+'</div>';
+      (function(d){ nd.onclick=function(){ openMission(d); }; })(day);
     } else {
-      node.innerHTML = '<div class="node-icon">🔒</div><div class="node-label">Day ' + dayNum + '</div>';
+      nd.className="node node-lock";
+      nd.innerHTML='<div class="node-icon">🔒</div><div class="node-label">Day '+day+'</div>';
     }
-    canvas.appendChild(node);
+    canvas.appendChild(nd);
   }
 
-  // ── Final Chi Node ──
-  var chiNode = document.createElement("div");
-  chiNode.className = "day-node final-node";
-  chiNode.style.left = finalX + "px";
-  chiNode.style.top = finalY + "px";
-  chiNode.innerHTML = '<div class="node-icon">🌸</div><div class="node-label">Chi!</div>';
-  if (completedDays < totalDays) chiNode.style.opacity = "0.45";
-  canvas.appendChild(chiNode);
+  /* Chi final node */
+  var chi=document.createElement("div");
+  chi.className="node node-chi";
+  chi.style.left=finalX+"px"; chi.style.top=finalY+"px";
+  chi.innerHTML='<div class="node-icon">🌸</div><div class="node-label">Chi!</div>';
+  if(S.completedDays<S.totalDays) chi.style.opacity="0.4";
+  canvas.appendChild(chi);
 
-  // ── Chibi Character ──
-  var chibi = document.createElement("div");
-  chibi.className = "map-chibi";
-  chibi.id = "mapChibi";
-  chibi.textContent = "🧑‍💻";
-  var cp = nodePositions[Math.min(currentDay - 1, nodePositions.length - 1)];
-  chibi.style.left = cp.x + "px";
-  chibi.style.top = cp.y + "px";
-  canvas.appendChild(chibi);
+  /* Chibi */
+  var cb=document.createElement("div");
+  cb.className="map-chibi"; cb.id="mapChibi"; cb.textContent="🧑‍💻";
+  var cp=pts[Math.min(S.currentDay-1,pts.length-1)];
+  cb.style.left=cp.x+"px"; cb.style.top=cp.y+"px";
+  canvas.appendChild(cb);
 }
 
-// ─── MISSION MODAL ───────────────────────────────────────────────────────────
-function openMission(dayNum) {
-  var m = missions[dayNum - 1];
-  document.getElementById("modalDayTag").textContent = "⭐ Day " + dayNum;
-  document.getElementById("modalTitle").textContent = m.title;
-  document.getElementById("modalDesc").textContent = m.desc;
-  document.getElementById("modalChibi").textContent = "🌸";
-  document.getElementById("missionModal").classList.add("show");
+/* ── PROGRESS ──────────────────────────────────────────────────── */
+function refreshProgress(){
+  var pct=S.totalDays>0?(S.completedDays/S.totalDays)*100:0;
+  $("progBar").style.width=pct+"%";
+  $("progLabel").textContent=S.completedDays+" / "+S.totalDays+" days";
+  $("ptsVal").textContent=S.coins;
+  $("rwPts").textContent=S.coins;
+  $("rwDone").textContent=S.completedDays;
+  $("rwLeft").textContent=Math.max(0,S.totalDays-S.completedDays);
+  $("prTotal").textContent=S.totalDays;
+  $("prDone").textContent=S.completedDays;
+  $("prPts").textContent=S.coins;
+  $("prMode").textContent=S.mode==="auto"?"Auto Mix":"Manual";
 }
 
-function closeModal() {
-  document.getElementById("missionModal").classList.remove("show");
+/* ── MISSION MODAL ─────────────────────────────────────────────── */
+function openMission(day){
+  var m=S.missions[day-1];
+  $("modalTag").textContent=  "⭐ Day "+day;
+  $("modalTitle").textContent=m.title;
+  $("modalDesc").textContent= m.desc;
+  $("modalChibi").textContent="🌸";
+  $("missionModal").classList.add("show");
 }
+function closeModal(){ $("missionModal").classList.remove("show"); }
 
-// ─── COMPLETE MISSION ────────────────────────────────────────────────────────
-function completeMission() {
+/* ── COMPLETE MISSION ──────────────────────────────────────────── */
+function completeMission(){
   closeModal();
-  completedDays++;
-  coins += 100;
-  currentDay++;
-
-  var s = surprises[Math.floor(Math.random() * surprises.length)];
-  document.getElementById("presentTitle").textContent = s.title;
-
-  if (completedDays >= totalDays) {
-    document.getElementById("presentMsg").textContent = "🌸 You have completed ALL missions! Chi is waiting for you!";
-    document.getElementById("btnContinue").textContent = "Meet Chi! 🌸";
-  } else {
-    document.getElementById("presentMsg").textContent = s.msg;
-    document.getElementById("btnContinue").textContent = "Continue ➡️";
-  }
-
+  S.completedDays++; S.coins+=100; S.currentDay++;
+  var last=S.completedDays>=S.totalDays;
+  var s=SURPRISES[Math.floor(Math.random()*SURPRISES.length)];
+  $("presentTitle").textContent=last?"🌸 All Done!":s.title;
+  $("presentMsg").textContent  =last?"You have completed ALL missions! Chi is waiting for you!":s.msg;
+  $("btnContinue").textContent =last?"Meet Chi! 🌸":"Continue ➡️";
   spawnConfetti();
-  document.getElementById("presentOverlay").classList.add("show");
+  $("presentOverlay").classList.add("show");
 }
 
-function closePresentAndContinue() {
-  document.getElementById("presentOverlay").classList.remove("show");
-  document.getElementById("confettiWrap").innerHTML = "";
-
-  if (completedDays >= totalDays) {
-    document.getElementById("finalPts").textContent = coins + " pts";
-    document.getElementById("finalDays").textContent = totalDays + " days";
-    showVictory();
+function closePresentAndContinue(){
+  $("presentOverlay").classList.remove("show");
+  $("confettiWrap").innerHTML="";
+  if(S.completedDays>=S.totalDays){
+    $("vPts").textContent =S.coins+" pts";
+    $("vDays").textContent=S.totalDays+" days";
+    showScreen("victory");
   } else {
-    updateProgress();
+    refreshProgress();
     buildMap();
   }
 }
 
-// ─── PROGRESS ────────────────────────────────────────────────────────────────
-function updateProgress() {
-  var pct = (completedDays / totalDays) * 100;
-  document.getElementById("progFill").style.width = pct + "%";
-  document.getElementById("progText").textContent = completedDays + " / " + totalDays + " days";
-  document.getElementById("coinCount").textContent = coins;
-}
-
-// ─── CONFETTI ────────────────────────────────────────────────────────────────
-function spawnConfetti() {
-  var wrap = document.getElementById("confettiWrap");
-  wrap.innerHTML = "";
-  var colors = ["#a78bfa","#ec4899","#fbbf24","#34d399","#60a5fa","#f87171","#fb923c","#fff"];
-  for (var i = 0; i < 65; i++) {
-    var p = document.createElement("div");
-    p.className = "confetti-piece";
-    p.style.left = Math.random() * 100 + "%";
-    p.style.top = "-20px";
-    p.style.width = (6 + Math.random() * 8) + "px";
-    p.style.height = (6 + Math.random() * 8) + "px";
-    p.style.background = colors[Math.floor(Math.random() * colors.length)];
-    p.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
-    p.style.animationDuration = (1.5 + Math.random() * 2) + "s";
-    p.style.animationDelay = (Math.random() * 0.5) + "s";
+/* ── CONFETTI ──────────────────────────────────────────────────── */
+function spawnConfetti(){
+  var wrap=$("confettiWrap"); wrap.innerHTML="";
+  var colors=["#a78bfa","#ec4899","#fbbf24","#34d399","#60a5fa","#f87171","#fb923c","#fff"];
+  for(var i=0;i<65;i++){
+    var p=document.createElement("div"); p.className="cp";
+    p.style.cssText="left:"+Math.random()*100+"%;top:-20px;"+
+      "width:"+(6+Math.random()*8)+"px;height:"+(6+Math.random()*8)+"px;"+
+      "background:"+colors[Math.floor(Math.random()*colors.length)]+";"+
+      "border-radius:"+(Math.random()>.5?"50%":"2px")+";"+
+      "animation-duration:"+(1.5+Math.random()*2)+"s;"+
+      "animation-delay:"+(Math.random()*.5)+"s;";
     wrap.appendChild(p);
   }
 }
 
-// ─── VICTORY ─────────────────────────────────────────────────────────────────
-function showVictory() {
-  var bg = document.getElementById("victoryBg");
-  bg.innerHTML = "";
-  for (var i = 0; i < 4; i++) {
-    var ring = document.createElement("div");
-    ring.className = "v-ring";
-    var size = 200 + i * 80;
-    ring.style.cssText = "width:" + size + "px;height:" + size + "px;top:50%;left:50%;animation-delay:" + (i * 0.8) + "s;";
-    bg.appendChild(ring);
-  }
-  showScreen("victory");
+/* ── NAV BAR ───────────────────────────────────────────────────── */
+function navHighlight(tab){
+  ["map","missions","rewards","profile"].forEach(function(t){
+    var b=$("nav-"+t); if(b) b.classList.toggle("on",t===tab);
+  });
 }
 
-// ─── RESTART ─────────────────────────────────────────────────────────────────
-function restart() {
-  currentDay = 1;
-  completedDays = 0;
-  coins = 0;
-  missions = [];
-  totalDays = 7;
-  document.getElementById("daysDisplay").textContent = 7;
-  setType("manual");
+function navTo(tab){
+  navHighlight(tab);
+  if(tab==="map"){ showScreen("map-screen"); return; }
+  if(tab==="missions"){ buildMissionsList(); showScreen("missions-tab"); return; }
+  if(tab==="rewards"){  refreshProgress();   showScreen("rewards-tab");  return; }
+  if(tab==="profile"){  refreshProgress();   showScreen("profile-tab");  return; }
+}
+
+function buildMissionsList(){
+  var list=$("missionsList"); list.innerHTML="";
+  for(var i=0;i<S.totalDays;i++){
+    var day=i+1, m=S.missions[i];
+    var cls=day<S.currentDay?"done":day===S.currentDay?"now":"lock";
+    var ic =day<S.currentDay?"✅" :day===S.currentDay?"⭐" :"🔒";
+    var card=document.createElement("div"); card.className="mission-card";
+    card.innerHTML='<div class="mc-badge '+cls+'">'+ic+'</div>'+
+      '<div class="mc-body">'+
+        '<div class="mc-day">Day '+day+'</div>'+
+        '<div class="mc-title">'+m.title+'</div>'+
+        '<div class="mc-desc">'+m.desc+'</div>'+
+      '</div>';
+    list.appendChild(card);
+  }
+}
+
+/* ── RESTART ───────────────────────────────────────────────────── */
+function restart(){
+  S.totalDays=7; S.currentDay=1; S.completedDays=0;
+  S.mode="manual"; S.missions=[]; S.coins=0;
+  $("dayNum").textContent=7;
+  setMode("manual");
   renderMissionInputs();
   showScreen("splash");
 }
 
-// ─── INIT ─────────────────────────────────────────────────────────────────────
+/* ── INIT ──────────────────────────────────────────────────────── */
 renderMissionInputs();
 </script>
 </body>
