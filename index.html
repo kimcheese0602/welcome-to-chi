@@ -12,7 +12,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
 .screen{display:none;flex-direction:column;width:100%;height:100%;overflow:hidden;}
 .screen.active{display:flex;}
 
-/* SPLASH */
 #splash{background:linear-gradient(160deg,#c9b8f0 0%,#f7c5d5 50%,#fde8c8 100%);justify-content:center;align-items:center;position:relative;}
 .splash-star{position:absolute;pointer-events:none;animation:twinkle 2s infinite alternate;}
 @keyframes twinkle{0%{opacity:.2;transform:scale(.7)}100%{opacity:1;transform:scale(1.3)}}
@@ -26,7 +25,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
 .btn-splash{background:linear-gradient(135deg,#a78bfa,#ec4899);color:#fff;border:none;padding:16px 52px;border-radius:50px;font-size:17px;font-weight:800;font-family:inherit;cursor:pointer;box-shadow:0 8px 25px rgba(167,139,250,.5);z-index:2;transition:transform .15s;letter-spacing:1px;}
 .btn-splash:active{transform:scale(.95);}
 
-/* SETUP */
 #setup{background:linear-gradient(160deg,#fde8c8 0%,#fce4ec 60%,#e8d5f5 100%);}
 .setup-header{flex-shrink:0;padding:52px 24px 14px;text-align:center;}
 .setup-header h2{font-size:24px;font-weight:900;color:#7c3aed;margin-bottom:4px;}
@@ -54,7 +52,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
 .btn-launch{width:100%;background:linear-gradient(135deg,#a78bfa,#ec4899);color:#fff;border:none;padding:18px;border-radius:20px;font-size:17px;font-weight:800;font-family:inherit;cursor:pointer;box-shadow:0 6px 20px rgba(167,139,250,.4);transition:transform .15s;}
 .btn-launch:active{transform:scale(.97);}
 
-/* MAP */
 #map-screen{background:linear-gradient(180deg,#b8f0e0 0%,#c8e8ff 45%,#e0d0f8 100%);}
 .map-topbar{flex-shrink:0;padding:48px 20px 8px;display:flex;align-items:center;justify-content:space-between;}
 .map-title{font-size:20px;font-weight:900;color:#4a2d7a;}
@@ -87,7 +84,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
 .nav-btn .nl{font-size:10px;font-weight:700;color:#9d7ab8;}
 .nav-btn.on .nl{color:#7c3aed;}
 
-/* MISSIONS TAB */
 #missions-tab{background:linear-gradient(160deg,#fde8c8 0%,#fce4ec 60%,#e8d5f5 100%);}
 .tab-header{flex-shrink:0;padding:52px 20px 14px;display:flex;align-items:center;justify-content:space-between;}
 .tab-header h2{font-size:22px;font-weight:900;color:#7c3aed;}
@@ -104,7 +100,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
 .mc-title{font-size:14px;font-weight:800;color:#3b1f6e;margin-bottom:3px;}
 .mc-desc{font-size:12px;font-weight:600;color:#7c6a9a;line-height:1.5;}
 
-/* REWARDS TAB */
 #rewards-tab{background:linear-gradient(160deg,#c9b8f0 0%,#f7c5d5 50%,#fde8c8 100%);}
 .rewards-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 30px;}
 .rewards-body .big{font-size:72px;margin-bottom:16px;}
@@ -115,7 +110,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
 .rstat .rv{font-size:26px;font-weight:900;color:#fff;display:block;}
 .rstat .rl{font-size:11px;font-weight:700;color:rgba(255,255,255,.85);}
 
-/* PROFILE TAB */
 #profile-tab{background:linear-gradient(160deg,#b8f0e0 0%,#c8e8ff 45%,#e0d0f8 100%);}
 .profile-scroll{flex:1;overflow-y:scroll;-webkit-overflow-scrolling:touch;padding:0 18px 30px;}
 .profile-scroll::-webkit-scrollbar{display:none;}
@@ -132,7 +126,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
 .btn-reset-profile{width:100%;background:linear-gradient(135deg,#a78bfa,#ec4899);color:#fff;border:none;padding:16px;border-radius:18px;font-size:15px;font-weight:800;font-family:inherit;cursor:pointer;margin-top:6px;transition:transform .15s;}
 .btn-reset-profile:active{transform:scale(.97);}
 
-/* MISSION MODAL */
 #missionModal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.55);backdrop-filter:blur(5px);z-index:200;display:none;align-items:flex-end;justify-content:center;max-width:430px;margin:0 auto;}
 #missionModal.show{display:flex;animation:fadeIn .3s ease;}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -147,7 +140,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
 .btn-done{width:100%;background:linear-gradient(135deg,#a78bfa,#ec4899);color:#fff;border:none;padding:17px;border-radius:18px;font-size:16px;font-weight:800;font-family:inherit;cursor:pointer;box-shadow:0 6px 20px rgba(167,139,250,.4);transition:transform .15s;}
 .btn-done:active{transform:scale(.97);}
 
-/* PRESENT */
 #presentOverlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,0,30,.78);z-index:300;display:none;align-items:center;justify-content:center;flex-direction:column;max-width:430px;margin:0 auto;}
 #presentOverlay.show{display:flex;animation:fadeIn .3s ease;}
 .confetti-wrap{position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;overflow:hidden;}
@@ -161,7 +153,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
 .btn-continue{margin-top:26px;background:#fff;color:#7c3aed;border:none;padding:14px 42px;border-radius:50px;font-size:16px;font-weight:800;font-family:inherit;cursor:pointer;z-index:2;animation:upIn .5s .8s both;transition:transform .15s;box-shadow:0 6px 22px rgba(0,0,0,.25);}
 .btn-continue:active{transform:scale(.95);}
 
-/* VICTORY */
 #victory{background:linear-gradient(160deg,#ffd6e7 0%,#c9b8f0 50%,#b8e4f9 100%);justify-content:center;align-items:center;position:relative;}
 .v-ring{position:absolute;border-radius:50%;border:3px solid rgba(255,255,255,.2);animation:ringOut 3s ease-out infinite;}
 @keyframes ringOut{0%{transform:translate(-50%,-50%) scale(.5);opacity:.8}100%{transform:translate(-50%,-50%) scale(2.5);opacity:0}}
@@ -180,7 +171,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
 <body>
 <div id="app">
 
-<!-- SPLASH -->
 <div class="screen active" id="splash">
   <div id="splashStars"></div>
   <div class="splash-blob" style="width:200px;height:200px;top:-60px;left:-60px;"></div>
@@ -192,7 +182,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
   <button class="btn-splash" onclick="goSetup()">Let's Go! 🚀</button>
 </div>
 
-<!-- SETUP -->
 <div class="screen" id="setup">
   <div class="setup-header">
     <h2>⚙️ Set Up Your Journey</h2>
@@ -227,9 +216,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
     </div>
     <div class="card" id="autoCard" style="display:none;">
       <div class="card-title">🎲 Auto Mission Mix</div>
-      <div class="auto-info">
-        Missions will be randomly selected and mixed from Chi's mission bank — one unique challenge per day! 🌟
-      </div>
+      <div class="auto-info">Missions will be randomly selected and mixed from Chi's mission bank — one unique challenge per day! 🌟</div>
     </div>
   </div>
   <div class="setup-footer">
@@ -237,31 +224,26 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
   </div>
 </div>
 
-<!-- MAP -->
 <div class="screen" id="map-screen">
   <div class="map-topbar">
     <div class="map-title">Chi's <span>World</span> 🗺️</div>
     <div class="map-pts">⭐ <span id="ptsVal">0</span> pts</div>
   </div>
   <div class="prog-wrap">
-    <div class="prog-labels">
-      <span>Progress</span>
-      <span id="progLabel">0 / 7 days</span>
-    </div>
+    <div class="prog-labels"><span>Progress</span><span id="progLabel">0 / 7 days</span></div>
     <div class="prog-track"><div class="prog-bar" id="progBar" style="width:0%"></div></div>
   </div>
   <div class="map-scroll" id="mapScroll">
     <div class="map-canvas" id="mapCanvas"></div>
   </div>
   <div class="bottom-nav">
-    <button class="nav-btn on" id="nav-map"       onclick="navTo('map')">      <span class="ni">🗺️</span><span class="nl">Map</span></button>
-    <button class="nav-btn"    id="nav-missions"   onclick="navTo('missions')"> <span class="ni">📋</span><span class="nl">Missions</span></button>
-    <button class="nav-btn"    id="nav-rewards"    onclick="navTo('rewards')">  <span class="ni">🏆</span><span class="nl">Rewards</span></button>
-    <button class="nav-btn"    id="nav-profile"    onclick="navTo('profile')">  <span class="ni">👤</span><span class="nl">Profile</span></button>
+    <button class="nav-btn on" id="nav-map" onclick="navTo('map')"><span class="ni">🗺️</span><span class="nl">Map</span></button>
+    <button class="nav-btn" id="nav-missions" onclick="navTo('missions')"><span class="ni">📋</span><span class="nl">Missions</span></button>
+    <button class="nav-btn" id="nav-rewards" onclick="navTo('rewards')"><span class="ni">🏆</span><span class="nl">Rewards</span></button>
+    <button class="nav-btn" id="nav-profile" onclick="navTo('profile')"><span class="ni">👤</span><span class="nl">Profile</span></button>
   </div>
 </div>
 
-<!-- MISSIONS TAB -->
 <div class="screen" id="missions-tab">
   <div class="tab-header">
     <h2>📋 All Missions</h2>
@@ -270,7 +252,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
   <div class="missions-scroll" id="missionsList"></div>
 </div>
 
-<!-- REWARDS TAB -->
 <div class="screen" id="rewards-tab">
   <div class="tab-header">
     <h2>🏆 Rewards</h2>
@@ -288,7 +269,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
   </div>
 </div>
 
-<!-- PROFILE TAB -->
 <div class="screen" id="profile-tab">
   <div class="tab-header">
     <h2>👤 Profile</h2>
@@ -302,10 +282,10 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
     </div>
     <div class="profile-card">
       <h3>📊 Journey Stats</h3>
-      <div class="prow"><span class="pk">Total Days</span>    <span class="pv" id="prTotal">7</span></div>
-      <div class="prow"><span class="pk">Completed</span>     <span class="pv" id="prDone">0</span></div>
-      <div class="prow"><span class="pk">Points Earned</span> <span class="pv" id="prPts">0</span></div>
-      <div class="prow"><span class="pk">Mission Mode</span>  <span class="pv" id="prMode">Manual</span></div>
+      <div class="prow"><span class="pk">Total Days</span><span class="pv" id="prTotal">7</span></div>
+      <div class="prow"><span class="pk">Completed</span><span class="pv" id="prDone">0</span></div>
+      <div class="prow"><span class="pk">Points Earned</span><span class="pv" id="prPts">0</span></div>
+      <div class="prow"><span class="pk">Mission Mode</span><span class="pv" id="prMode">Manual</span></div>
     </div>
     <div class="profile-card">
       <h3>⚙️ Actions</h3>
@@ -314,29 +294,26 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
   </div>
 </div>
 
-<!-- MISSION MODAL -->
 <div id="missionModal">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
     <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-tag"   id="modalTag">⭐ Day 1</div>
+    <div class="modal-tag" id="modalTag">⭐ Day 1</div>
     <div class="modal-chibi" id="modalChibi">🌸</div>
     <div class="modal-title" id="modalTitle">Today's Mission</div>
-    <div class="modal-desc"  id="modalDesc">Complete your mission!</div>
+    <div class="modal-desc" id="modalDesc">Complete your mission!</div>
     <button class="btn-done" onclick="completeMission()">✅ Mission Complete!</button>
   </div>
 </div>
 
-<!-- PRESENT -->
 <div id="presentOverlay">
   <div class="confetti-wrap" id="confettiWrap"></div>
   <div class="present-box">🎁</div>
   <div class="present-title" id="presentTitle">🎉 Surprise!</div>
-  <div class="present-msg"   id="presentMsg">You unlocked a reward!</div>
+  <div class="present-msg" id="presentMsg">You unlocked a reward!</div>
   <button class="btn-continue" id="btnContinue" onclick="closePresentAndContinue()">Continue ➡️</button>
 </div>
 
-<!-- VICTORY -->
 <div class="screen" id="victory">
   <div class="v-ring" style="width:200px;height:200px;top:50%;left:50%;"></div>
   <div class="v-ring" style="width:280px;height:280px;top:50%;left:50%;animation-delay:.8s;"></div>
@@ -352,323 +329,76 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:"Nunito",sans-serif
   <button class="btn-restart" onclick="restart()">🔄 New Journey</button>
 </div>
 
-</div><!-- /app -->
+</div>
 
 <script>
-/* ── STATE ─────────────────────────────────────────────────────── */
-var S = {
-  totalDays:7, currentDay:1, completedDays:0,
-  mode:"manual", missions:[], coins:0
-};
+var S={totalDays:7,currentDay:1,completedDays:0,mode:"manual",missions:[],coins:0};
+var SAVE_KEY="welcomeToChi_save";
+function saveGame(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(S));}catch(e){}}
+function loadGame(){try{var d=localStorage.getItem(SAVE_KEY);if(d){var p=JSON.parse(d);S.totalDays=p.totalDays||7;S.currentDay=p.currentDay||1;S.completedDays=p.completedDays||0;S.mode=p.mode||"manual";S.missions=p.missions||[];S.coins=p.coins||0;return true;}}catch(e){}return false;}
+function clearSave(){try{localStorage.removeItem(SAVE_KEY);}catch(e){}}
 
-/* ── MISSION BANK ──────────────────────────────────────────────── */
-var BANK = [
-  {title:"Get Thing Done Once 1️⃣",   desc:"Pick ONE thing you have been putting off and do it today. Just once is enough — start the momentum!"},
-  {title:"Smile Twice 😊",            desc:"Find two genuine reasons to smile today. Share one of those smiles with someone around you!"},
-  {title:"Think of Me Three 💭",      desc:"Pause three times today and let your mind wander to a happy memory. Let it make you smile."},
-  {title:"Follow Your Heart Four 💖", desc:"Make four small decisions today purely based on what your heart says — no overthinking allowed!"},
-  {title:"Do What You Like Five 🎉",  desc:"Spend time doing five minutes (or more!) of something you genuinely enjoy. You deserve it."},
-  {title:"Chic Six 💅",               desc:"Do six things today that make you feel stylish and put-together. Dress up, stand tall, own it!"},
-  {title:"Celebration Seven 🥂",      desc:"Celebrate seven small wins from this week — write them down and toast to yourself!"},
-  {title:"Be Late Eight ⏰",          desc:"Give yourself permission to slow down today. Arrive eight minutes late to your own rush — breathe."},
-  {title:"Ask Me Why Nine 🤔",        desc:"Ask yourself 'why?' nine times today about something you do automatically. Discover your real reasons."},
-  {title:"Send Me Love Ten 💌",       desc:"Send ten little acts of love today — a text, a smile, a kind thought. Spread the warmth!"}
+var BANK=[
+  {title:"Get Thing Done Once 1️⃣",desc:"Pick ONE thing you have been putting off and do it today. Just once is enough — start the momentum!"},
+  {title:"Smile Twice 😊",desc:"Find two genuine reasons to smile today. Share one of those smiles with someone around you!"},
+  {title:"Think of Me Three 💭",desc:"Pause three times today and let your mind wander to a happy memory. Let it make you smile."},
+  {title:"Follow Your Heart Four 💖",desc:"Make four small decisions today purely based on what your heart says — no overthinking allowed!"},
+  {title:"Do What You Like Five 🎉",desc:"Spend time doing five minutes (or more!) of something you genuinely enjoy. You deserve it."},
+  {title:"Chic Six 💅",desc:"Do six things today that make you feel stylish and put-together. Dress up, stand tall, own it!"},
+  {title:"Celebration Seven 🥂",desc:"Celebrate seven small wins from this week — write them down and toast to yourself!"},
+  {title:"Be Late Eight ⏰",desc:"Give yourself permission to slow down today. Arrive eight minutes late to your own rush — breathe."},
+  {title:"Ask Me Why Nine 🤔",desc:"Ask yourself 'why?' nine times today about something you do automatically. Discover your real reasons."},
+  {title:"Send Me Love Ten 💌",desc:"Send ten little acts of love today — a text, a smile, a kind thought. Spread the warmth!"},
+  {title:"Meditation Eleven 🧘",desc:"Meditate for eleven minutes today. Close your eyes, breathe deeply, and let your mind find peace and stillness."},
+  {title:"My Heart Melt Twelve 💗",desc:"Do twelve things today that warm your heart — watch something sweet, hug someone, or write a love note to yourself."},
+  {title:"Don't Be Lean Thirteen 💪",desc:"Treat yourself generously thirteen times today — extra food, extra rest, extra kindness. No holding back!"},
+  {title:"Eat Like Feast Fourteen 🍽️",desc:"Make today a feast day! Enjoy fourteen bites of something truly delicious and savor every single one."},
+  {title:"Miss My Kiss Fifteen 😘",desc:"Send fifteen kisses into the world today — blow a kiss, text a kiss emoji, or simply think of someone you love fifteen times."}
 ];
 
-var SURPRISES = [
-  {title:"🎊 Amazing!",    msg:"You are crushing it! Chi is so proud of you!"},
-  {title:"⭐ Star Player!", msg:"Another day, another victory! You are unstoppable!"},
-  {title:"🌟 Brilliant!",  msg:"Look at you go! Chi is cheering for you every step!"},
-  {title:"🎉 Fantastic!",  msg:"One step closer to Chi! Keep the momentum going!"},
-  {title:"💫 Superstar!",  msg:"You did it! Chi cannot wait to see you at the finish line!"}
+var SURPRISES=[
+  {title:"🎊 Amazing!",msg:"You are crushing it! Chi is so proud of you!"},
+  {title:"⭐ Star Player!",msg:"Another day, another victory! You are unstoppable!"},
+  {title:"🌟 Brilliant!",msg:"Look at you go! Chi is cheering for you every step!"},
+  {title:"🎉 Fantastic!",msg:"One step closer to Chi! Keep the momentum going!"},
+  {title:"💫 Superstar!",msg:"You did it! Chi cannot wait to see you at the finish line!"}
 ];
 
-/* ── HELPERS ───────────────────────────────────────────────────── */
-function $(id){ return document.getElementById(id); }
+function $(id){return document.getElementById(id);}
+function showScreen(id){document.querySelectorAll(".screen").forEach(function(s){s.classList.remove("active");});var el=$(id);if(el)el.classList.add("active");}
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
 
-function showScreen(id){
-  document.querySelectorAll(".screen").forEach(function(s){ s.classList.remove("active"); });
-  var el=$(id); if(el) el.classList.add("active");
-}
+(function(){var c=$("splashStars");var em=["⭐","✨","💫","🌟","⚡","🌸"];for(var i=0;i<14;i++){var s=document.createElement("div");s.className="splash-star";s.textContent=em[Math.floor(Math.random()*em.length)];s.style.cssText="left:"+Math.random()*90+"%;top:"+Math.random()*90+"%;font-size:"+(12+Math.random()*14)+"px;animation-delay:"+(Math.random()*2)+"s;";c.appendChild(s);}})();
 
-function shuffle(arr){
-  var a=arr.slice();
-  for(var i=a.length-1;i>0;i--){
-    var j=Math.floor(Math.random()*(i+1));
-    var t=a[i]; a[i]=a[j]; a[j]=t;
-  }
-  return a;
-}
+function goSetup(){renderMissionInputs();showScreen("setup");}
+function changeDays(delta){S.totalDays=Math.max(1,Math.min(30,S.totalDays+delta));$("dayNum").textContent=S.totalDays;if(S.mode==="manual")renderMissionInputs();}
+function setMode(m){S.mode=m;$("btnManual").classList.toggle("active",m==="manual");$("btnAuto").classList.toggle("active",m==="auto");$("manualCard").style.display=m==="manual"?"block":"none";$("autoCard").style.display=m==="auto"?"block":"none";}
+function renderMissionInputs(){var list=$("miList");list.innerHTML="";for(var i=1;i<=S.totalDays;i++){var saved=(S.missions[i-1]&&S.missions[i-1].rawTitle)?S.missions[i-1].rawTitle:"";var row=document.createElement("div");row.className="mi-row";row.innerHTML='<div class="mi-num">'+i+'</div><input class="mi-input" id="mi'+i+'" placeholder="Day '+i+' mission..." value="'+saved.replace(/"/g,"&quot;")+'"/>';list.appendChild(row);}}
 
-/* ── SPLASH STARS ──────────────────────────────────────────────── */
-(function(){
-  var c=$("splashStars");
-  var em=["⭐","✨","💫","🌟","⚡","🌸"];
-  for(var i=0;i<14;i++){
-    var s=document.createElement("div");
-    s.className="splash-star";
-    s.textContent=em[Math.floor(Math.random()*em.length)];
-    s.style.cssText="left:"+Math.random()*90+"%;top:"+Math.random()*90+"%;font-size:"+(12+Math.random()*14)+"px;animation-delay:"+(Math.random()*2)+"s;";
-    c.appendChild(s);
-  }
-})();
+function launchMap(){S.missions=[];if(S.mode==="auto"){var pool=shuffle(BANK);for(var i=0;i<S.totalDays;i++)S.missions.push(pool[i%pool.length]);}else{for(var i=1;i<=S.totalDays;i++){var el=$("mi"+i);var raw=el?el.value.trim():"";S.missions.push({rawTitle:raw,title:raw||("Day "+i+" Mission"),desc:raw?"Your mission: \""+raw+"\" — go make it happen! 💪":"Today is day "+i+" of your adventure. Give it everything you have got!"});}}S.currentDay=1;S.completedDays=0;S.coins=0;saveGame();showScreen("map-screen");navHighlight("map");requestAnimationFrame(function(){requestAnimationFrame(function(){buildMap();refreshProgress();});});}
 
-/* ── SETUP ─────────────────────────────────────────────────────── */
-function goSetup(){
-  renderMissionInputs();
-  showScreen("setup");
-}
+function resumeGame(){showScreen("map-screen");navHighlight("map");requestAnimationFrame(function(){requestAnimationFrame(function(){buildMap();refreshProgress();});});}
 
-function changeDays(delta){
-  S.totalDays=Math.max(1,Math.min(30,S.totalDays+delta));
-  $("dayNum").textContent=S.totalDays;
-  if(S.mode==="manual") renderMissionInputs();
-}
+function buildMap(){var canvas=$("mapCanvas");canvas.innerHTML="";var W=canvas.offsetWidth||375;var cols=[.24,.53,.77,.48,.21,.56,.80,.43,.22,.55,.78,.45,.23,.57,.79];var rowGap=95,startY=85,pts=[];for(var i=0;i<S.totalDays;i++)pts.push({x:Math.round(cols[i%cols.length]*W),y:startY+i*rowGap});var finalX=Math.round(W*.5),finalY=startY+S.totalDays*rowGap,totalH=finalY+140;canvas.style.height=totalH+"px";var ns="http://www.w3.org/2000/svg";var svg=document.createElementNS(ns,"svg");svg.setAttribute("class","path-svg");svg.setAttribute("viewBox","0 0 "+W+" "+totalH);svg.setAttribute("preserveAspectRatio","none");svg.style.height=totalH+"px";var d="M "+pts[0].x+" "+pts[0].y;for(var i=1;i<pts.length;i++){var p=pts[i-1],q=pts[i];d+=" Q "+((p.x+q.x)/2)+" "+(p.y+38)+" "+q.x+" "+q.y;}var lp=pts[pts.length-1];d+=" Q "+((lp.x+finalX)/2)+" "+(lp.y+42)+" "+finalX+" "+finalY;function mkPath(stroke,w,dash){var p=document.createElementNS(ns,"path");p.setAttribute("d",d);p.setAttribute("fill","none");p.setAttribute("stroke",stroke);p.setAttribute("stroke-width",w);p.setAttribute("stroke-linecap","round");if(dash)p.setAttribute("stroke-dasharray",dash);return p;}svg.appendChild(mkPath("rgba(0,0,0,.1)","14",null));svg.appendChild(mkPath("rgba(255,255,255,.78)","10","18 12"));canvas.appendChild(svg);[{e:"🌳",x:.04,y:50},{e:"🌸",x:.84,y:90},{e:"⭐",x:.89,y:185},{e:"🌿",x:.03,y:240},{e:"🍄",x:.87,y:310},{e:"🌺",x:.04,y:370},{e:"☁️",x:.73,y:440},{e:"🦋",x:.07,y:470},{e:"🌻",x:.82,y:540},{e:"🍀",x:.04,y:590},{e:"✨",x:.89,y:630},{e:"🌈",x:.39,y:16},{e:"🐝",x:.77,y:255},{e:"🌙",x:.07,y:158}].forEach(function(d){var el=document.createElement("div");el.className="map-deco";el.textContent=d.e;el.style.left=Math.round(d.x*W)+"px";el.style.top=d.y+"px";canvas.appendChild(el);});for(var i=0;i<S.totalDays;i++){var day=i+1,nd=document.createElement("div");nd.id="nd"+day;nd.style.left=pts[i].x+"px";nd.style.top=pts[i].y+"px";if(day<S.currentDay){nd.className="node node-done";nd.innerHTML='<div class="node-icon">✅</div><div class="node-label">Day '+day+'</div>';}else if(day===S.currentDay){nd.className="node node-now";nd.innerHTML='<div class="node-icon">⭐</div><div class="node-label">Day '+day+'</div>';(function(d){nd.onclick=function(){openMission(d);};})(day);}else{nd.className="node node-lock";nd.innerHTML='<div class="node-icon">🔒</div><div class="node-label">Day '+day+'</div>';}canvas.appendChild(nd);}var chi=document.createElement("div");chi.className="node node-chi";chi.style.left=finalX+"px";chi.style.top=finalY+"px";chi.innerHTML='<div class="node-icon">🌸</div><div class="node-label">Chi!</div>';if(S.completedDays<S.totalDays)chi.style.opacity="0.4";canvas.appendChild(chi);var cb=document.createElement("div");cb.className="map-chibi";cb.id="mapChibi";cb.textContent="🧑‍💻";var cp=pts[Math.min(S.currentDay-1,pts.length-1)];cb.style.left=cp.x+"px";cb.style.top=cp.y+"px";canvas.appendChild(cb);}
 
-function setMode(m){
-  S.mode=m;
-  $("btnManual").classList.toggle("active",m==="manual");
-  $("btnAuto").classList.toggle("active",  m==="auto");
-  $("manualCard").style.display=m==="manual"?"block":"none";
-  $("autoCard").style.display  =m==="auto"  ?"block":"none";
-}
+function refreshProgress(){var pct=S.totalDays>0?(S.completedDays/S.totalDays)*100:0;$("progBar").style.width=pct+"%";$("progLabel").textContent=S.completedDays+" / "+S.totalDays+" days";$("ptsVal").textContent=S.coins;$("rwPts").textContent=S.coins;$("rwDone").textContent=S.completedDays;$("rwLeft").textContent=Math.max(0,S.totalDays-S.completedDays);$("prTotal").textContent=S.totalDays;$("prDone").textContent=S.completedDays;$("prPts").textContent=S.coins;$("prMode").textContent=S.mode==="auto"?"Auto Mix":"Manual";}
 
-function renderMissionInputs(){
-  var list=$("miList"); list.innerHTML="";
-  for(var i=1;i<=S.totalDays;i++){
-    var saved=(S.missions[i-1]&&S.missions[i-1].rawTitle)?S.missions[i-1].rawTitle:"";
-    var row=document.createElement("div");
-    row.className="mi-row";
-    row.innerHTML='<div class="mi-num">'+i+'</div><input class="mi-input" id="mi'+i+'" placeholder="Day '+i+' mission..." value="'+saved.replace(/"/g,"&quot;")+'"/>';
-    list.appendChild(row);
-  }
-}
+function openMission(day){var m=S.missions[day-1];$("modalTag").textContent="⭐ Day "+day;$("modalTitle").textContent=m.title;$("modalDesc").textContent=m.desc;$("modalChibi").textContent="🌸";$("missionModal").classList.add("show");}
+function closeModal(){$("missionModal").classList.remove("show");}
 
-/* ── LAUNCH MAP ────────────────────────────────────────────────── */
-function launchMap(){
-  S.missions=[];
-  if(S.mode==="auto"){
-    var pool=shuffle(BANK);
-    for(var i=0;i<S.totalDays;i++) S.missions.push(pool[i%pool.length]);
-  } else {
-    for(var i=1;i<=S.totalDays;i++){
-      var el=$("mi"+i);
-      var raw=el?el.value.trim():"";
-      S.missions.push({
-        rawTitle:raw,
-        title:raw||("Day "+i+" Mission"),
-        desc:raw?"Your mission: \""+raw+"\" — go make it happen! 💪":"Today is day "+i+" of your adventure. Give it everything you have got!"
-      });
-    }
-  }
-  S.currentDay=1; S.completedDays=0; S.coins=0;
-  showScreen("map-screen");
-  navHighlight("map");
-  requestAnimationFrame(function(){
-    requestAnimationFrame(function(){
-      buildMap();
-      refreshProgress();
-    });
-  });
-}
+function completeMission(){closeModal();S.completedDays++;S.coins+=100;S.currentDay++;saveGame();var last=S.completedDays>=S.totalDays;var s=SURPRISES[Math.floor(Math.random()*SURPRISES.length)];$("presentTitle").textContent=last?"🌸 All Done!":s.title;$("presentMsg").textContent=last?"You have completed ALL missions! Chi is waiting for you!":s.msg;$("btnContinue").textContent=last?"Meet Chi! 🌸":"Continue ➡️";spawnConfetti();$("presentOverlay").classList.add("show");}
 
-/* ── BUILD MAP ─────────────────────────────────────────────────── */
-function buildMap(){
-  var canvas=$("mapCanvas");
-  canvas.innerHTML="";
-  var W=canvas.offsetWidth||375;
-  var cols=[.24,.53,.77,.48,.21,.56,.80,.43,.22,.55,.78,.45,.23,.57,.79];
-  var rowGap=95, startY=85, pts=[];
-  for(var i=0;i<S.totalDays;i++) pts.push({x:Math.round(cols[i%cols.length]*W),y:startY+i*rowGap});
-  var finalX=Math.round(W*.5), finalY=startY+S.totalDays*rowGap, totalH=finalY+140;
-  canvas.style.height=totalH+"px";
+function closePresentAndContinue(){$("presentOverlay").classList.remove("show");$("confettiWrap").innerHTML="";if(S.completedDays>=S.totalDays){$("vPts").textContent=S.coins+" pts";$("vDays").textContent=S.totalDays+" days";showScreen("victory");}else{refreshProgress();buildMap();}}
 
-  /* SVG path */
-  var ns="http://www.w3.org/2000/svg";
-  var svg=document.createElementNS(ns,"svg");
-  svg.setAttribute("class","path-svg");
-  svg.setAttribute("viewBox","0 0 "+W+" "+totalH);
-  svg.setAttribute("preserveAspectRatio","none");
-  svg.style.height=totalH+"px";
-  var d="M "+pts[0].x+" "+pts[0].y;
-  for(var i=1;i<pts.length;i++){
-    var p=pts[i-1],q=pts[i];
-    d+=" Q "+((p.x+q.x)/2)+" "+(p.y+38)+" "+q.x+" "+q.y;
-  }
-  var lp=pts[pts.length-1];
-  d+=" Q "+((lp.x+finalX)/2)+" "+(lp.y+42)+" "+finalX+" "+finalY;
-  function mkPath(stroke,w,dash){
-    var p=document.createElementNS(ns,"path");
-    p.setAttribute("d",d); p.setAttribute("fill","none");
-    p.setAttribute("stroke",stroke); p.setAttribute("stroke-width",w);
-    p.setAttribute("stroke-linecap","round");
-    if(dash) p.setAttribute("stroke-dasharray",dash);
-    return p;
-  }
-  svg.appendChild(mkPath("rgba(0,0,0,.1)","14",null));
-  svg.appendChild(mkPath("rgba(255,255,255,.78)","10","18 12"));
-  canvas.appendChild(svg);
+function spawnConfetti(){var wrap=$("confettiWrap");wrap.innerHTML="";var colors=["#a78bfa","#ec4899","#fbbf24","#34d399","#60a5fa","#f87171","#fb923c","#fff"];for(var i=0;i<65;i++){var p=document.createElement("div");p.className="cp";p.style.cssText="left:"+Math.random()*100+"%;top:-20px;width:"+(6+Math.random()*8)+"px;height:"+(6+Math.random()*8)+"px;background:"+colors[Math.floor(Math.random()*colors.length)]+";border-radius:"+(Math.random()>.5?"50%":"2px")+";animation-duration:"+(1.5+Math.random()*2)+"s;animation-delay:"+(Math.random()*.5)+"s;";wrap.appendChild(p);}}
 
-  /* Decorations */
-  [{e:"🌳",x:.04,y:50},{e:"🌸",x:.84,y:90},{e:"⭐",x:.89,y:185},
-   {e:"🌿",x:.03,y:240},{e:"🍄",x:.87,y:310},{e:"🌺",x:.04,y:370},
-   {e:"☁️",x:.73,y:440},{e:"🦋",x:.07,y:470},{e:"🌻",x:.82,y:540},
-   {e:"🍀",x:.04,y:590},{e:"✨",x:.89,y:630},{e:"🌈",x:.39,y:16},
-   {e:"🐝",x:.77,y:255},{e:"🌙",x:.07,y:158}
-  ].forEach(function(d){
-    var el=document.createElement("div");
-    el.className="map-deco"; el.textContent=d.e;
-    el.style.left=Math.round(d.x*W)+"px"; el.style.top=d.y+"px";
-    canvas.appendChild(el);
-  });
+function navHighlight(tab){["map","missions","rewards","profile"].forEach(function(t){var b=$("nav-"+t);if(b)b.classList.toggle("on",t===tab);});}
+function navTo(tab){navHighlight(tab);if(tab==="map"){showScreen("map-screen");return;}if(tab==="missions"){buildMissionsList();showScreen("missions-tab");return;}if(tab==="rewards"){refreshProgress();showScreen("rewards-tab");return;}if(tab==="profile"){refreshProgress();showScreen("profile-tab");return;}}
+function buildMissionsList(){var list=$("missionsList");list.innerHTML="";for(var i=0;i<S.totalDays;i++){var day=i+1,m=S.missions[i];var cls=day<S.currentDay?"done":day===S.currentDay?"now":"lock";var ic=day<S.currentDay?"✅":day===S.currentDay?"⭐":"🔒";var card=document.createElement("div");card.className="mission-card";card.innerHTML='<div class="mc-badge '+cls+'">'+ic+'</div><div class="mc-body"><div class="mc-day">Day '+day+'</div><div class="mc-title">'+m.title+'</div><div class="mc-desc">'+m.desc+'</div></div>';list.appendChild(card);}}
 
-  /* Day nodes */
-  for(var i=0;i<S.totalDays;i++){
-    var day=i+1, nd=document.createElement("div");
-    nd.id="nd"+day;
-    nd.style.left=pts[i].x+"px"; nd.style.top=pts[i].y+"px";
-    if(day<S.currentDay){
-      nd.className="node node-done";
-      nd.innerHTML='<div class="node-icon">✅</div><div class="node-label">Day '+day+'</div>';
-    } else if(day===S.currentDay){
-      nd.className="node node-now";
-      nd.innerHTML='<div class="node-icon">⭐</div><div class="node-label">Day '+day+'</div>';
-      (function(d){ nd.onclick=function(){ openMission(d); }; })(day);
-    } else {
-      nd.className="node node-lock";
-      nd.innerHTML='<div class="node-icon">🔒</div><div class="node-label">Day '+day+'</div>';
-    }
-    canvas.appendChild(nd);
-  }
+function restart(){S.totalDays=7;S.currentDay=1;S.completedDays=0;S.mode="manual";S.missions=[];S.coins=0;clearSave();$("dayNum").textContent=7;setMode("manual");renderMissionInputs();showScreen("splash");}
 
-  /* Chi final node */
-  var chi=document.createElement("div");
-  chi.className="node node-chi";
-  chi.style.left=finalX+"px"; chi.style.top=finalY+"px";
-  chi.innerHTML='<div class="node-icon">🌸</div><div class="node-label">Chi!</div>';
-  if(S.completedDays<S.totalDays) chi.style.opacity="0.4";
-  canvas.appendChild(chi);
-
-  /* Chibi */
-  var cb=document.createElement("div");
-  cb.className="map-chibi"; cb.id="mapChibi"; cb.textContent="🧑‍💻";
-  var cp=pts[Math.min(S.currentDay-1,pts.length-1)];
-  cb.style.left=cp.x+"px"; cb.style.top=cp.y+"px";
-  canvas.appendChild(cb);
-}
-
-/* ── PROGRESS ──────────────────────────────────────────────────── */
-function refreshProgress(){
-  var pct=S.totalDays>0?(S.completedDays/S.totalDays)*100:0;
-  $("progBar").style.width=pct+"%";
-  $("progLabel").textContent=S.completedDays+" / "+S.totalDays+" days";
-  $("ptsVal").textContent=S.coins;
-  $("rwPts").textContent=S.coins;
-  $("rwDone").textContent=S.completedDays;
-  $("rwLeft").textContent=Math.max(0,S.totalDays-S.completedDays);
-  $("prTotal").textContent=S.totalDays;
-  $("prDone").textContent=S.completedDays;
-  $("prPts").textContent=S.coins;
-  $("prMode").textContent=S.mode==="auto"?"Auto Mix":"Manual";
-}
-
-/* ── MISSION MODAL ─────────────────────────────────────────────── */
-function openMission(day){
-  var m=S.missions[day-1];
-  $("modalTag").textContent=  "⭐ Day "+day;
-  $("modalTitle").textContent=m.title;
-  $("modalDesc").textContent= m.desc;
-  $("modalChibi").textContent="🌸";
-  $("missionModal").classList.add("show");
-}
-function closeModal(){ $("missionModal").classList.remove("show"); }
-
-/* ── COMPLETE MISSION ──────────────────────────────────────────── */
-function completeMission(){
-  closeModal();
-  S.completedDays++; S.coins+=100; S.currentDay++;
-  var last=S.completedDays>=S.totalDays;
-  var s=SURPRISES[Math.floor(Math.random()*SURPRISES.length)];
-  $("presentTitle").textContent=last?"🌸 All Done!":s.title;
-  $("presentMsg").textContent  =last?"You have completed ALL missions! Chi is waiting for you!":s.msg;
-  $("btnContinue").textContent =last?"Meet Chi! 🌸":"Continue ➡️";
-  spawnConfetti();
-  $("presentOverlay").classList.add("show");
-}
-
-function closePresentAndContinue(){
-  $("presentOverlay").classList.remove("show");
-  $("confettiWrap").innerHTML="";
-  if(S.completedDays>=S.totalDays){
-    $("vPts").textContent =S.coins+" pts";
-    $("vDays").textContent=S.totalDays+" days";
-    showScreen("victory");
-  } else {
-    refreshProgress();
-    buildMap();
-  }
-}
-
-/* ── CONFETTI ──────────────────────────────────────────────────── */
-function spawnConfetti(){
-  var wrap=$("confettiWrap"); wrap.innerHTML="";
-  var colors=["#a78bfa","#ec4899","#fbbf24","#34d399","#60a5fa","#f87171","#fb923c","#fff"];
-  for(var i=0;i<65;i++){
-    var p=document.createElement("div"); p.className="cp";
-    p.style.cssText="left:"+Math.random()*100+"%;top:-20px;"+
-      "width:"+(6+Math.random()*8)+"px;height:"+(6+Math.random()*8)+"px;"+
-      "background:"+colors[Math.floor(Math.random()*colors.length)]+";"+
-      "border-radius:"+(Math.random()>.5?"50%":"2px")+";"+
-      "animation-duration:"+(1.5+Math.random()*2)+"s;"+
-      "animation-delay:"+(Math.random()*.5)+"s;";
-    wrap.appendChild(p);
-  }
-}
-
-/* ── NAV BAR ───────────────────────────────────────────────────── */
-function navHighlight(tab){
-  ["map","missions","rewards","profile"].forEach(function(t){
-    var b=$("nav-"+t); if(b) b.classList.toggle("on",t===tab);
-  });
-}
-
-function navTo(tab){
-  navHighlight(tab);
-  if(tab==="map"){ showScreen("map-screen"); return; }
-  if(tab==="missions"){ buildMissionsList(); showScreen("missions-tab"); return; }
-  if(tab==="rewards"){  refreshProgress();   showScreen("rewards-tab");  return; }
-  if(tab==="profile"){  refreshProgress();   showScreen("profile-tab");  return; }
-}
-
-function buildMissionsList(){
-  var list=$("missionsList"); list.innerHTML="";
-  for(var i=0;i<S.totalDays;i++){
-    var day=i+1, m=S.missions[i];
-    var cls=day<S.currentDay?"done":day===S.currentDay?"now":"lock";
-    var ic =day<S.currentDay?"✅" :day===S.currentDay?"⭐" :"🔒";
-    var card=document.createElement("div"); card.className="mission-card";
-    card.innerHTML='<div class="mc-badge '+cls+'">'+ic+'</div>'+
-      '<div class="mc-body">'+
-        '<div class="mc-day">Day '+day+'</div>'+
-        '<div class="mc-title">'+m.title+'</div>'+
-        '<div class="mc-desc">'+m.desc+'</div>'+
-      '</div>';
-    list.appendChild(card);
-  }
-}
-
-/* ── RESTART ───────────────────────────────────────────────────── */
-function restart(){
-  S.totalDays=7; S.currentDay=1; S.completedDays=0;
-  S.mode="manual"; S.missions=[]; S.coins=0;
-  $("dayNum").textContent=7;
-  setMode("manual");
-  renderMissionInputs();
-  showScreen("splash");
-}
-
-/* ── INIT ──────────────────────────────────────────────────────── */
-renderMissionInputs();
+(function init(){var hasSave=loadGame();if(hasSave&&S.missions.length>0&&S.completedDays<S.totalDays){resumeGame();}else if(hasSave&&S.completedDays>=S.totalDays){$("vPts").textContent=S.coins+" pts";$("vDays").textContent=S.totalDays+" days";showScreen("victory");}else{renderMissionInputs();showScreen("splash");}})();
 </script>
 </body>
 </html>
